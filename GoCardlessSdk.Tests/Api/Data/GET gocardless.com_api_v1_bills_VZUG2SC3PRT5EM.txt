@@ -1,0 +1,19 @@
+﻿HTTP/1.1 200 OK
+
+{
+   "amount": "44.0",
+   "gocardless_fees": "0.44",
+   "partner_fees": "0",
+   "currency": "GBP",
+   "created_at": "2011-11-04T21: 41: 25Z",
+   "description": "Month 2 payment",
+   "id": "VZUG2SC3PRT5EM",
+   "name": "Bill 2 for Subscription description",
+   "paid_at":  "2011-11-07T15: 00: 00Z",
+   "status": "paid",
+   "merchant_id": "WOQRUJU9OH2HH1",
+   "user_id": "FIVWCCVEST6S4D",
+   "source_type": "subscription",
+   "source_id": "YH1VEVQHYVB1UT",
+   "uri": "https://gocardless.com/api/v1/bills/VZUG2SC3PRT5EM"
+}
