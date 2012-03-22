@@ -1,0 +1,25 @@
+﻿{
+    "payload": {
+        "resource_type": "bill",
+        "action": "paid",
+        "bills": [
+            {
+                "id": "AKJ398H8KA",
+                "status": "paid",
+                "source_type": "subscription",
+                "source_id": "KKJ398H8K8",
+                "paid_at": "2011-12-01T12:00:00Z",
+                "uri": "https://gocardless.com/api/v1/bills/AKJ398H8KA"
+            },
+            {
+                "id": "AKJ398H8KB",
+                "status": "paid",
+                "source_type": "subscription",
+                "source_id": "8AKJ398H78",
+                "paid_at": "2011-12-09T12:00:00Z",
+                "uri": "https://gocardless.com/api/v1/bills/AKJ398H8KB"
+            }
+        ],
+        "signature": "blahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblah"
+    }
+}
