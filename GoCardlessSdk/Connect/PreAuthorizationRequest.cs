@@ -18,5 +18,7 @@ namespace GoCardlessSdk.Connect
         /// false if omitted
         /// </summary>
         public bool? CalendarIntervals { get; set; }
+
+        public UserRequest User { get; set; }
     }
 }
