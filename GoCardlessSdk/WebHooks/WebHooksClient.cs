@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.IO;
+using GoCardlessSdk.Api.Json;
+using Newtonsoft.Json;
 
 namespace GoCardlessSdk.WebHooks
 {
@@ -9,14 +11,18 @@ namespace GoCardlessSdk.WebHooks
         /// </summary>
         /// <param name="content"></param>
         /// <returns></returns>
-        public static GoCardlessRequest.Payload ParseRequest(string content)
+        public static Payload ParseRequest(string content)
         {
             // deserialize request content. (ensure content type is set to JSON in GoCardless setup)
-            var payload = JsonConvert.DeserializeObject<GoCardlessRequest>(content).payload;
+            var serializer = new JsonSerializer
+            {
+                ContractResolver = new UnderscoreToCamelCasePropertyResolver(),
+            };
+            var payload = serializer.Deserialize<GoCardlessRequest>(new JsonTextReader(new StringReader(content))).Payload;
 
             // validate the HMAC digest by resigning the received parameters
-            var signature = payload.signature;
-            payload.signature = null;
+            var signature = payload.Signature;
+            payload.Signature = null;
 
             if (signature != Utils.GetSignatureForParams(payload.ToHashParams(), GoCardless.AccountDetails.AppSecret))
             {

@@ -20,6 +20,7 @@ namespace GoCardlessSdk.Tests.WebHooks
             var request = File.ReadAllText("./Webhooks/Data/test valid signature.txt");
             GoCardless.AccountDetails.AppSecret = "8ifu76Qi4HMJC1zSNf93WntQzJKpSmce0SwBNTA5HEqQY61aBTH7Nsx4w_HG1vUL";
             Assert.DoesNotThrow(() => WebHooksClient.ParseRequest(request));
+            var payload = WebHooksClient.ParseRequest(request);
         }
 
     }
