@@ -1,0 +1,16 @@
+﻿{
+  "payload": {
+    "resource_type": "subscription",
+    "action": "cancelled",
+    "subscriptions": [{
+      "id": "AKJ398H8KBO122A",
+      "status": "cancelled",
+      "uri": "https://sandbox.gocardless.com/api/v1/subscriptions/AKJ398H8KBO122A"
+    },{
+      "id": "BBJ398H8KBO122A",
+      "status": "cancelled",
+      "uri": "https://sandbox.gocardless.com/api/v1/subscriptions/BBJ398H8KBO122A"
+    }],
+    "signature": "183501db0732c7615c5fad36afa492cc6cdbd1ff83c55a76fb14d2ddba760e34"
+  }
+}

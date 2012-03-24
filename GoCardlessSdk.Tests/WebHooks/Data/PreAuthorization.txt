@@ -1,0 +1,16 @@
+﻿{
+  "payload": {
+    "resource_type": "pre_authorization",
+    "action": "cancelled",
+    "pre_authorizations": [{
+      "id": "AKJ398H8KBOOO3",
+      "status": "cancelled",
+      "uri": "https://sandbox.gocardless.com/api/v1/pre_authorizations/AKJ398H8KBOOO3"
+    }, {
+      "id": "AKJ398H8KBOOOA",
+      "status": "cancelled",
+      "uri": "https://sandbox.gocardless.com/api/v1/pre_authorizations/AKJ398H8KBOOOA"
+    }],
+    "signature": "e8c8097028ff11b5d0fbec92443e62da0ff696f4fd03f4fc9590d502e203a4f5"
+  }
+}

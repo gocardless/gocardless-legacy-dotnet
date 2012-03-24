@@ -113,10 +113,16 @@
     <Content Include="Api\Data\PUT gocardless.com_api_v1_subscriptions_1580_cancel.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="WebHooks\Data\test invalid signature.txt">
+    <Content Include="WebHooks\Data\PreAuthorization.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="WebHooks\Data\test valid signature.txt">
+    <Content Include="WebHooks\Data\Subscription.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebHooks\Data\Bill invalid signature.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebHooks\Data\Bill.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

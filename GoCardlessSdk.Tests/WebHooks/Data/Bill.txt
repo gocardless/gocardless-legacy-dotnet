@@ -20,6 +20,6 @@
                 "uri": "https://sandbox.gocardless.com/api/v1/bills/AKJ398H8KB"
             }
         ],
-        "signature": "27eafb3a2f38bb6fae752ae6cd7a1a7b5a4df660af2a90499748d8f5d1f554ba"
+        "signature": "a68fbb8bce16dc3daa851043fd602e72955496093cd92f0bf89801a85fb7282d"
     }
 }
