@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using GoCardlessSdk.WebHooks;
 using NUnit.Framework;
 
@@ -33,14 +34,14 @@ namespace GoCardlessSdk.Tests.WebHooks
             Assert.AreEqual("paid", payload.Bills[0].Status);
             Assert.AreEqual("subscription", payload.Bills[0].SourceType);
             Assert.AreEqual("KKJ398H8K8", payload.Bills[0].SourceId);
-            Assert.AreEqual("2011-12-01T12:00:00Z", payload.Bills[0].PaidAt);
+            Assert.AreEqual(new DateTimeOffset(new DateTime(2011, 12, 01, 12, 01, 23)), payload.Bills[0].PaidAt);
             Assert.AreEqual("https://sandbox.gocardless.com/api/v1/bills/AKJ398H8KA", payload.Bills[0].Uri);
 
             Assert.AreEqual("AKJ398H8KB", payload.Bills[1].Id);
-            Assert.AreEqual("paid", payload.Bills[01].Status);
+            Assert.AreEqual("paid", payload.Bills[1].Status);
             Assert.AreEqual("subscription", payload.Bills[1].SourceType);
             Assert.AreEqual("8AKJ398H78", payload.Bills[1].SourceId);
-            Assert.AreEqual("2011-12-09T12:00:00Z", payload.Bills[1].PaidAt);
+            Assert.AreEqual(new DateTimeOffset(new DateTime(2011, 12, 09, 23, 04, 56)), payload.Bills[1].PaidAt);
             Assert.AreEqual("https://sandbox.gocardless.com/api/v1/bills/AKJ398H8KB", payload.Bills[1].Uri); 
         }
 
@@ -64,7 +65,7 @@ namespace GoCardlessSdk.Tests.WebHooks
             Assert.AreEqual("https://sandbox.gocardless.com/api/v1/pre_authorizations/AKJ398H8KBOOO3", payload.PreAuthorizations[0].Uri);
 
             Assert.AreEqual("AKJ398H8KBOOOA", payload.PreAuthorizations[1].Id);
-            Assert.AreEqual("cancelled", payload.PreAuthorizations[01].Status);
+            Assert.AreEqual("cancelled", payload.PreAuthorizations[1].Status);
             Assert.AreEqual("https://sandbox.gocardless.com/api/v1/pre_authorizations/AKJ398H8KBOOOA", payload.PreAuthorizations[1].Uri);
         }
 

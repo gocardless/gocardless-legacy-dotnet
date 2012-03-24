@@ -8,7 +8,7 @@
                 "status": "paid",
                 "source_type": "subscription",
                 "source_id": "KKJ398H8K8",
-                "paid_at": "2011-12-01T12:00:00Z",
+                "paid_at": "2011-12-01T12:01:23Z",
                 "uri": "https://sandbox.gocardless.com/api/v1/bills/AKJ398H8KA"
             },
             {
@@ -16,10 +16,10 @@
                 "status": "paid",
                 "source_type": "subscription",
                 "source_id": "8AKJ398H78",
-                "paid_at": "2011-12-09T12:00:00Z",
+                "paid_at": "2011-12-09T23:04:56Z",
                 "uri": "https://sandbox.gocardless.com/api/v1/bills/AKJ398H8KB"
             }
         ],
-        "signature": "a68fbb8bce16dc3daa851043fd602e72955496093cd92f0bf89801a85fb7282d"
+        "signature": "7abaa876a693778e7ce6b49bbb6f39f928b5ae87bbe60455175218998a1a9448"
     }
 }
