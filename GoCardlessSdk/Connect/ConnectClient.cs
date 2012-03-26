@@ -2,7 +2,7 @@ using System;
 using System.Collections.Specialized;
 using System.Net;
 using GoCardlessSdk.Api;
-using GoCardlessSdk.Api.Json;
+using GoCardlessSdk.Helpers;
 using Newtonsoft.Json;
 using RestSharp;
 

@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using GoCardlessSdk.Api.Json;
+using GoCardlessSdk.Helpers;
 using Newtonsoft.Json;
 
 namespace GoCardlessSdk.WebHooks

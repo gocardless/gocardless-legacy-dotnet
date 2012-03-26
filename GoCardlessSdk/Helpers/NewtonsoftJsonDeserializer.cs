@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Deserializers;
 
-namespace GoCardlessSdk.Api.Json
+namespace GoCardlessSdk.Helpers
 {
     public class NewtonsoftJsonDeserializer : IDeserializer
     {

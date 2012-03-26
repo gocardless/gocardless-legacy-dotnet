@@ -1,6 +1,6 @@
 using Newtonsoft.Json.Serialization;
 
-namespace GoCardlessSdk.Api.Json
+namespace GoCardlessSdk.Helpers
 {
     public class UnderscoreToCamelCasePropertyResolver : DefaultContractResolver
     {
