@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0B2DECE8-E280-4578-A6CD-78D98507BB0F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GoCardlessSdk.Net2.Tests</RootNamespace>
+    <AssemblyName>GoCardlessSdk.Net2.Tests</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FiddlerCore">
+      <HintPath>..\GoCardlessSdk.Tests\libs\FiddlerCoreAPI\FiddlerCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net20\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\CancelPreAuthorizationTests.cs">
+      <Link>Api\CancelPreAuthorizationTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\CancelSubscriptionTests.cs">
+      <Link>Api\CancelSubscriptionTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\DeepAssertHelper.cs">
+      <Link>Api\DeepAssertHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\DisposableEventHandler.cs">
+      <Link>Api\DisposableEventHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\FiddlerSetupFixture.cs">
+      <Link>Api\FiddlerSetupFixture.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\GetBillTests.cs">
+      <Link>Api\GetBillTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\GetErrorTests.cs">
+      <Link>Api\GetErrorTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\GetMerchantBillTests.cs">
+      <Link>Api\GetMerchantBillTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\GetMerchantPreAuthorizationsTests.cs">
+      <Link>Api\GetMerchantPreAuthorizationsTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\GetMerchantSubscriptionsTests.cs">
+      <Link>Api\GetMerchantSubscriptionsTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\GetMerchantTests.cs">
+      <Link>Api\GetMerchantTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\GetMerchantUsersTests.cs">
+      <Link>Api\GetMerchantUsersTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\GetPreAuthorizationTests.cs">
+      <Link>Api\GetPreAuthorizationTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\GetSubscriptionTests.cs">
+      <Link>Api\GetSubscriptionTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Api\PostBillTests.cs">
+      <Link>Api\PostBillTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\Connect\ConnectTests.cs">
+      <Link>Connect\ConnectTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\UtilsTests.cs">
+      <Link>UtilsTests.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk.Tests\WebHooks\WebHooksTests.cs">
+      <Link>WebHooks\WebHooksTests.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoCardlessSdk.Net2\GoCardlessSdk.Net2.csproj">
+      <Project>{C8AA0C78-ED08-4912-ABB5-921661A8E9C5}</Project>
+      <Name>GoCardlessSdk.Net2</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\GET gocardless.com_api_v1_bills_213.txt">
+      <Link>Api\Data\GET gocardless.com_api_v1_bills_213.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\GET gocardless.com_api_v1_bills_VZUG2SC3PRT5EM.txt">
+      <Link>Api\Data\GET gocardless.com_api_v1_bills_VZUG2SC3PRT5EM.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1.txt">
+      <Link>Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_bills.txt">
+      <Link>Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_bills.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_pre_authorizations.txt">
+      <Link>Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_pre_authorizations.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_subscriptions.txt">
+      <Link>Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_subscriptions.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_users.txt">
+      <Link>Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_users.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\GET gocardless.com_api_v1_pre_authorizations_1234JKH8KLJ.txt">
+      <Link>Api\Data\GET gocardless.com_api_v1_pre_authorizations_1234JKH8KLJ.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\GET gocardless.com_api_v1_subscriptions_AJKH638A99.txt">
+      <Link>Api\Data\GET gocardless.com_api_v1_subscriptions_AJKH638A99.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\POST gocardless.com_api_v1_bills.txt">
+      <Link>Api\Data\POST gocardless.com_api_v1_bills.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\PUT gocardless.com_api_v1_pre_authorizations_1580_cancel.txt">
+      <Link>Api\Data\PUT gocardless.com_api_v1_pre_authorizations_1580_cancel.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\Api\Data\PUT gocardless.com_api_v1_subscriptions_1580_cancel.txt">
+      <Link>Api\Data\PUT gocardless.com_api_v1_subscriptions_1580_cancel.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\WebHooks\Data\Bill invalid signature.txt">
+      <Link>WebHooks\Data\Bill invalid signature.txt</Link>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\WebHooks\Data\Bill.txt">
+      <Link>WebHooks\Data\Bill.txt</Link>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\WebHooks\Data\PreAuthorization.txt">
+      <Link>WebHooks\Data\PreAuthorization.txt</Link>
+    </Content>
+    <Content Include="..\GoCardlessSdk.Tests\WebHooks\Data\Subscription.txt">
+      <Link>WebHooks\Data\Subscription.txt</Link>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

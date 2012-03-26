@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoCardlessSdk.Net2", "GoCar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoCardlessSdk.Tests", "GoCardlessSdk.Tests\GoCardlessSdk.Tests.csproj", "{5DE0A32E-5920-44CD-8272-1311094D6932}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoCardlessSdk.Net2.Tests", "GoCardlessSdk.Net2.Tests\GoCardlessSdk.Net2.Tests.csproj", "{0B2DECE8-E280-4578-A6CD-78D98507BB0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{5DE0A32E-5920-44CD-8272-1311094D6932}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DE0A32E-5920-44CD-8272-1311094D6932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DE0A32E-5920-44CD-8272-1311094D6932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B2DECE8-E280-4578-A6CD-78D98507BB0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B2DECE8-E280-4578-A6CD-78D98507BB0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B2DECE8-E280-4578-A6CD-78D98507BB0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B2DECE8-E280-4578-A6CD-78D98507BB0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
