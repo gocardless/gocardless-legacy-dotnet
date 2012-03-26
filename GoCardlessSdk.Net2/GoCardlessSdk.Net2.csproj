@@ -31,12 +31,101 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net20\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.Net2">
+      <HintPath>..\packages\RestSharp.Net2.1.1.11\lib\net20\RestSharp.Net2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GoCardlessSdk\AccountDetails.cs">
+      <Link>AccountDetails.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Api\ApiClient.cs">
+      <Link>Api\ApiClient.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Api\BillResponse.cs">
+      <Link>Api\BillResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Api\MerchantResponse.cs">
+      <Link>Api\MerchantResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Api\PreAuthorizationResponse.cs">
+      <Link>Api\PreAuthorizationResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Api\SubscriptionResponse.cs">
+      <Link>Api\SubscriptionResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Api\UserResponse.cs">
+      <Link>Api\UserResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Connect\BillRequest.cs">
+      <Link>Connect\BillRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Connect\ConfirmResource.cs">
+      <Link>Connect\ConfirmResource.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Connect\ConnectClient.cs">
+      <Link>Connect\ConnectClient.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Connect\PreAuthorizationRequest.cs">
+      <Link>Connect\PreAuthorizationRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Connect\SubscriptionRequest.cs">
+      <Link>Connect\SubscriptionRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Connect\UserRequest.cs">
+      <Link>Connect\UserRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Exceptions.cs">
+      <Link>Exceptions.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\GoCardless.cs">
+      <Link>GoCardless.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Helpers\NewtonsoftJsonDeserializer.cs">
+      <Link>Helpers\NewtonsoftJsonDeserializer.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Helpers\UnderscoreToCamelCasePropertyResolver.cs">
+      <Link>Helpers\UnderscoreToCamelCasePropertyResolver.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Partners\AuthorizeResponse.cs">
+      <Link>Partners\AuthorizeResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Partners\Merchant.cs">
+      <Link>Partners\Merchant.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Partners\MerchantAccessTokenResponse.cs">
+      <Link>Partners\MerchantAccessTokenResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Partners\PartnerClient.cs">
+      <Link>Partners\PartnerClient.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Partners\Prepopulated.cs">
+      <Link>Partners\Prepopulated.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Partners\User.cs">
+      <Link>Partners\User.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\Utils.cs">
+      <Link>Utils.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\WebHooks\GoCardlessRequest.cs">
+      <Link>WebHooks\GoCardlessRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\GoCardlessSdk\WebHooks\WebHooksClient.cs">
+      <Link>WebHooks\WebHooksClient.cs</Link>
+    </Compile>
+    <Compile Include="Helpers\LinqBridge-1.2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
