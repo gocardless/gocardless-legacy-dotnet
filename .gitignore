@@ -20,3 +20,5 @@ _ReSharper.*
 Visual Studio 2010/
 *.Publish.xml
 packages/NHibernateProfiler.1.0.0.920/tools/log.txt
+
+Sample.Mvc3/GoCardlessAppSettings.config

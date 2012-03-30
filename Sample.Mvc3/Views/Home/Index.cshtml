@@ -1,0 +1,22 @@
+﻿@model Sample.Mvc3.Models.LinksModel
+@{
+    ViewBag.Title = "GoCardless Sandbox tests";
+}
+<h2>@(ViewBag.Title)</h2>
+@if (Model.Error != null)
+{
+    <p style="color: red">
+        ERROR: @Model.Error</p>
+}
+else
+{
+    <p>
+        <a href="@Model.NewBillUrl">Create new bill</a>
+    </p>
+    <p>
+        <a href="@Model.NewSubscriptionUrl">Create new subscription</a>
+    </p>
+    <p>
+        <a href="@Model.NewPreAuthorizationUrl">Create new preauthorization</a>
+    </p>
+}
