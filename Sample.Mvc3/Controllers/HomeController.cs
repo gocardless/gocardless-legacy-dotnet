@@ -92,5 +92,49 @@ namespace Sample.Mvc3.Controllers
             return View();
         }
 
+        public ActionResult Merchant()
+        {
+            GoCardless.Environment = GoCardless.Environments.Sandbox;
+            ViewData.Model = GoCardless.Api.GetMerchant(MyMerchantId);
+            return View();
+        }
+
+        public ActionResult Bills()
+        {
+            GoCardless.Environment = GoCardless.Environments.Sandbox;
+            ViewData.Model = GoCardless.Api.GetMerchantBills(MyMerchantId);
+            return View();
+        }
+
+        public ActionResult Subscriptions()
+        {
+            GoCardless.Environment = GoCardless.Environments.Sandbox;
+            ViewData.Model = GoCardless.Api.GetMerchantSubscriptions(MyMerchantId);
+            return View();
+        }
+
+        public ActionResult PreAuthorizations()
+        {
+            GoCardless.Environment = GoCardless.Environments.Sandbox;
+            ViewData.Model = GoCardless.Api.GetMerchantPreAuthorizations(MyMerchantId);
+            return View();
+        }
+
+        public ActionResult Users()
+        {
+            GoCardless.Environment = GoCardless.Environments.Sandbox;
+            ViewData.Model = GoCardless.Api.GetMerchantUsers(MyMerchantId);
+            return View();
+        }
+
+        public ActionResult Cancel()
+        {
+            return View();
+        }
+
+        public ActionResult Success()
+        {
+            return View();
+        }
     }
 }
