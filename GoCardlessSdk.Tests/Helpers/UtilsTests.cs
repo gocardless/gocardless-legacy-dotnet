@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
 using GoCardlessSdk.Connect;
+using GoCardlessSdk.Helpers;
 using GoCardlessSdk.Partners;
 using NUnit.Framework;
 
-namespace GoCardlessSdk.Tests
+namespace GoCardlessSdk.Tests.Helpers
 {
     public class UtilsTests
     {

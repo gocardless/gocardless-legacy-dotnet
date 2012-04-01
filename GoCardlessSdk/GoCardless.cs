@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using GoCardlessSdk.Api;
+using GoCardlessSdk.Helpers;
 using GoCardlessSdk.Partners;
 
 namespace GoCardlessSdk

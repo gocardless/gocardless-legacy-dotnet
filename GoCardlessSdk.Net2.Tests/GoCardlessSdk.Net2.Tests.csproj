@@ -94,8 +94,8 @@
     <Compile Include="..\GoCardlessSdk.Tests\Connect\ConnectTests.cs">
       <Link>Connect\ConnectTests.cs</Link>
     </Compile>
-    <Compile Include="..\GoCardlessSdk.Tests\UtilsTests.cs">
-      <Link>UtilsTests.cs</Link>
+    <Compile Include="..\GoCardlessSdk.Tests\Helpers\UtilsTests.cs">
+      <Link>Helpers\UtilsTests.cs</Link>
     </Compile>
     <Compile Include="..\GoCardlessSdk.Tests\WebHooks\WebHooksTests.cs">
       <Link>WebHooks\WebHooksTests.cs</Link>

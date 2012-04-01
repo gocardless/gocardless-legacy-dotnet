@@ -94,6 +94,9 @@
     <Compile Include="..\GoCardlessSdk\Helpers\UnderscoreToCamelCasePropertyResolver.cs">
       <Link>Helpers\UnderscoreToCamelCasePropertyResolver.cs</Link>
     </Compile>
+    <Compile Include="..\GoCardlessSdk\Helpers\Utils.cs">
+      <Link>Helpers\Utils.cs</Link>
+    </Compile>
     <Compile Include="..\GoCardlessSdk\Partners\AuthorizeResponse.cs">
       <Link>Partners\AuthorizeResponse.cs</Link>
     </Compile>
@@ -111,9 +114,6 @@
     </Compile>
     <Compile Include="..\GoCardlessSdk\Partners\User.cs">
       <Link>Partners\User.cs</Link>
-    </Compile>
-    <Compile Include="..\GoCardlessSdk\Utils.cs">
-      <Link>Utils.cs</Link>
     </Compile>
     <Compile Include="..\GoCardlessSdk\WebHooks\GoCardlessRequest.cs">
       <Link>WebHooks\GoCardlessRequest.cs</Link>

@@ -6,9 +6,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace GoCardlessSdk
+namespace GoCardlessSdk.Helpers
 {
-    public static class Utils
+    internal static class Utils
     {
         /// <summary>
         /// Generate a random base64-encoded string
