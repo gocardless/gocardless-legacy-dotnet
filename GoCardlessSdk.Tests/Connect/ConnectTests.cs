@@ -46,7 +46,7 @@ namespace GoCardlessSdk.Tests.Connect
                     BillingAddress2 = "100 Main Street",
                     BillingTown = "Townville",
                     BillingCounty = "Countyshire",
-                    BillingPostcode = "AB12 3CD",
+                    BillingPostcode = "N1 1AB",
                 }
             };
             GoCardless.Environment = GoCardless.Environments.Sandbox;
@@ -108,7 +108,7 @@ namespace GoCardlessSdk.Tests.Connect
                                            BillingAddress2 = "100 Main Street",
                                            BillingTown = "Townville",
                                            BillingCounty = "Countyshire",
-                                           BillingPostcode = "AB12 3CD",
+                                           BillingPostcode = "N1 1AB",
                                        }
                                    };
             GoCardless.Environment = GoCardless.Environments.Sandbox;
@@ -170,7 +170,7 @@ namespace GoCardlessSdk.Tests.Connect
                                                       BillingAddress2 = "100 Main Street",
                                                       BillingTown = "Townville",
                                                       BillingCounty = "Countyshire",
-                                                      BillingPostcode = "AB12 3CD",
+                                                      BillingPostcode = "N1 1AB",
                                                   }
                                    };
             GoCardless.Environment = GoCardless.Environments.Sandbox;

@@ -31,7 +31,7 @@ namespace Sample.Mvc3.Controllers
                                            BillingAddress2 = "100 Main St",
                                            BillingTown = "Townville",
                                            BillingCounty = "Countyshire",
-                                           BillingPostcode = "AB12 3CD",
+                                           BillingPostcode = "N1 1AB",
                                            Email = "john.smith@example.com",
                                            FirstName = "John",
                                            LastName = "Smith",
@@ -51,7 +51,7 @@ namespace Sample.Mvc3.Controllers
                                 BillingAddress2 = "100 Main St",
                                 BillingTown = "Townville",
                                 BillingCounty = "Countyshire",
-                                BillingPostcode = "AB12 3CD",
+                                BillingPostcode = "N1 1AB",
                                 Email = "john.smith@example.com",
                                 FirstName = "John",
                                 LastName = "Smith",
@@ -77,7 +77,7 @@ namespace Sample.Mvc3.Controllers
                                 BillingAddress2 = "100 Main St",
                                 BillingTown = "Townville",
                                 BillingCounty = "Countyshire",
-                                BillingPostcode = "AB12 3CD",
+                                BillingPostcode = "N1 1AB",
                                 Email = "john.smith@example.com",
                                 FirstName = "John",
                                 LastName = "Smith",
@@ -134,6 +134,7 @@ namespace Sample.Mvc3.Controllers
 
         public ActionResult Success()
         {
+            ViewData.Model = TempData["resource"];
             return View();
         }
     }

@@ -53,7 +53,7 @@ namespace GoCardlessSdk.Tests.Helpers
                                                           BillingAddress2 = "200 High St",
                                                           BillingTown = "Townville",
                                                           BillingCounty = "Countyshire",
-                                                          BillingPostcode = "AB12 3CD",
+                                                          BillingPostcode = "N1 1AB",
                                                           User = new User
                                                                      {
                                                                          FirstName = "Mike",
@@ -68,7 +68,7 @@ namespace GoCardlessSdk.Tests.Helpers
             Assert.AreEqual("200 High St", prepopulatedHash["merchant[billing_address2]"].Single());
             Assert.AreEqual("Townville", prepopulatedHash["merchant[billing_town]"].Single());
             Assert.AreEqual("Countyshire", prepopulatedHash["merchant[billing_county]"].Single());
-            Assert.AreEqual("AB12 3CD", prepopulatedHash["merchant[billing_postcode]"].Single());
+            Assert.AreEqual("N1 1AB", prepopulatedHash["merchant[billing_postcode]"].Single());
             Assert.AreEqual("Mike", prepopulatedHash["merchant[user][first_name]"].Single());
             Assert.AreEqual("Merchant", prepopulatedHash["merchant[user][last_name]"].Single());
             Assert.AreEqual("mike@merchants.com", prepopulatedHash["merchant[user][email]"].Single());
