@@ -103,15 +103,15 @@ namespace GoCardlessSdk.Helpers
         internal static HashParams ToHashParams(
             this object queryStringable, HashParams hash = null, string prefix = null)
         {
-            Func<object, bool> isSimpleType = o =>
-                                                  {
-                                                      var type = o.GetType();
-                                                      return type.IsPrimitive
-                                                             || type == typeof (string)
-                                                             || type == typeof (decimal)
-                                                             || type == typeof (DateTimeOffset)
-                                                          ;
-                                                  };
+            Func<object, bool> isOfSimpleType = o =>
+                                                    {
+                                                        var type = o.GetType();
+                                                        return type.IsPrimitive
+                                                               || type == typeof (string)
+                                                               || type == typeof (decimal)
+                                                               || type == typeof (DateTimeOffset)
+                                                            ;
+                                                    };
 
             PropertyInfo[] propertyInfos = queryStringable.GetType().GetProperties(
                 BindingFlags.Public | BindingFlags.Instance);
@@ -133,7 +133,7 @@ namespace GoCardlessSdk.Helpers
                     {
                         foreach (var innerValue in (Array)value)
                         {
-                            if (isSimpleType(innerValue))
+                            if (isOfSimpleType(innerValue))
                             {
                                 hash.Add(propertyName + "[]", innerValue);
                             }
@@ -143,7 +143,7 @@ namespace GoCardlessSdk.Helpers
                             } 
                         }
                     }
-                    else if (isSimpleType(value))
+                    else if (isOfSimpleType(value))
                     {
                         hash.Add(propertyName, value);
                     }

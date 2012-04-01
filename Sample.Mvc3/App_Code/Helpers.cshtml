@@ -1,6 +1,19 @@
 ﻿@using System.Collections
 @helper Dump(object model)
     {
+        Func<object, bool> isOfSimpleType = o =>
+        {
+            if (o == null)
+            {
+                return true;
+            }
+            var type = o.GetType();
+            return type.IsPrimitive
+                   || type == typeof(string)
+                   || type == typeof(decimal)
+                   || type == typeof(DateTimeOffset)
+                ;
+        };
         if (model is IEnumerable)
         {
             int item = 0;
@@ -28,7 +41,18 @@
             <tr>
                 <td>@prop.Name
                 </td>
-                <td>@prop.GetValue(model, new object[0])
+                <td>
+                    @{
+               var value = prop.GetValue(model, new object[0]);
+               if (isOfSimpleType(value))
+               {
+                        @value
+               }
+               else
+               {
+                        @Dump(value)
+               }
+                    }
                 </td>
             </tr>
         }
