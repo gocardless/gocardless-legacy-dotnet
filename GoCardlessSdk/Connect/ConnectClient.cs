@@ -21,7 +21,7 @@ namespace GoCardlessSdk.Connect
         /// <returns>the parameters with the new +:signature+ key</returns>
         private static Utils.HashParams SignParams(Utils.HashParams @params)
         {
-            var signature = Utils.GetSignatureForParams(@params, GoCardlessSdk.GoCardless.AccountDetails.AppSecret);
+            var signature = Utils.GetSignatureForParams(@params, GoCardless.AccountDetails.AppSecret);
             @params.Add("signature", signature);
             return @params;
         }
@@ -39,9 +39,9 @@ namespace GoCardlessSdk.Connect
         {
             var hash = new Utils.HashParams
                            {
-                               {"client_id", GoCardlessSdk.GoCardless.AccountDetails.AppId},
-                               {"nonce", GoCardlessSdk.GoCardless.GenerateNonce()},
-                               {"timestamp", GoCardlessSdk.GoCardless.GetUtcNow().IsoFormatTime()},
+                               {"client_id", GoCardless.AccountDetails.AppId},
+                               {"nonce", GoCardless.GenerateNonce()},
+                               {"timestamp", GoCardless.GetUtcNow().IsoFormatTime()},
                            };
 
             hash = @params.ToHashParams(hash, type);
@@ -62,7 +62,7 @@ namespace GoCardlessSdk.Connect
 
             hash = SignParams(hash);
 
-            var url = GoCardlessSdk.GoCardless.BaseUrl + "/connect/" + type + "s/new?" + hash.ToQueryString();
+            var url = GoCardless.BaseUrl + "/connect/" + type + "s/new?" + hash.ToQueryString();
             return url;
         }
 
@@ -127,7 +127,7 @@ namespace GoCardlessSdk.Connect
         /// a valid signature and will throw a {SignatureException} if the signature is
         /// invalid.
         /// </summary>
-        /// <param name="params">params the response parameters returned by the API server</param>
+        /// <param name="requestContent">the response parameters returned by the API server</param>
         /// <returns>the confirmed resource object</returns>
         public static ConfirmResource ConfirmResource(NameValueCollection requestContent)
         {
