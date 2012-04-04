@@ -47,7 +47,7 @@ namespace GoCardlessSdk
 
         public static PartnerClient Partner
         {
-            get { return new PartnerClient(AccountDetails.AppId, BaseUrl); }
+            get { return new PartnerClient(); }
         }
 
 

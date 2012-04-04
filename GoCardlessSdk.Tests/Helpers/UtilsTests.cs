@@ -44,7 +44,7 @@ namespace GoCardlessSdk.Tests.Helpers
             Assert.AreEqual("Tim", subscriptionHash["user[first_name]"].Single());
             Assert.AreEqual("blah@timiles.com", subscriptionHash["user[email]"].Single());
 
-            var prepopulated = new Prepopulated
+            var manageMerchant = new ManageMerchantRequest
                                    {
                                        Merchant = new Merchant
                                                       {
@@ -62,16 +62,16 @@ namespace GoCardlessSdk.Tests.Helpers
                                                                      }
                                                       }
                                    };
-            var prepopulatedHash = prepopulated.ToHashParams();
-            Assert.AreEqual("Mike the Merchant", prepopulatedHash["merchant[name]"].Single());
-            Assert.AreEqual("Flat 1", prepopulatedHash["merchant[billing_address1]"].Single());
-            Assert.AreEqual("200 High St", prepopulatedHash["merchant[billing_address2]"].Single());
-            Assert.AreEqual("Townville", prepopulatedHash["merchant[billing_town]"].Single());
-            Assert.AreEqual("Countyshire", prepopulatedHash["merchant[billing_county]"].Single());
-            Assert.AreEqual("N1 1AB", prepopulatedHash["merchant[billing_postcode]"].Single());
-            Assert.AreEqual("Mike", prepopulatedHash["merchant[user][first_name]"].Single());
-            Assert.AreEqual("Merchant", prepopulatedHash["merchant[user][last_name]"].Single());
-            Assert.AreEqual("mike@merchants.com", prepopulatedHash["merchant[user][email]"].Single());
+            var manageMerchantHash = manageMerchant.ToHashParams();
+            Assert.AreEqual("Mike the Merchant", manageMerchantHash["merchant[name]"].Single());
+            Assert.AreEqual("Flat 1", manageMerchantHash["merchant[billing_address1]"].Single());
+            Assert.AreEqual("200 High St", manageMerchantHash["merchant[billing_address2]"].Single());
+            Assert.AreEqual("Townville", manageMerchantHash["merchant[billing_town]"].Single());
+            Assert.AreEqual("Countyshire", manageMerchantHash["merchant[billing_county]"].Single());
+            Assert.AreEqual("N1 1AB", manageMerchantHash["merchant[billing_postcode]"].Single());
+            Assert.AreEqual("Mike", manageMerchantHash["merchant[user][first_name]"].Single());
+            Assert.AreEqual("Merchant", manageMerchantHash["merchant[user][last_name]"].Single());
+            Assert.AreEqual("mike@merchants.com", manageMerchantHash["merchant[user][email]"].Single());
         }
 
         [Test]

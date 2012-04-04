@@ -2,14 +2,13 @@
 using System.Web.Mvc;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
+using GoCardlessSdk.Partners;
 using Sample.Mvc3.Models;
 
 namespace Sample.Mvc3.Controllers
 {
     public class HomeController : Controller
     {
-        private const string MyMerchantId = "0190G74E3J";
-
         public ActionResult Index()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
@@ -24,7 +23,7 @@ namespace Sample.Mvc3.Controllers
                             Description = "Testing a new monthly subscription",
                             IntervalLength = 1,
                             IntervalUnit = "month",
-                            MerchantId = MyMerchantId,
+                            MerchantId = Settings.MyMerchantId,
                             User = new UserRequest
                                        {
                                            BillingAddress1 = "Flat 1",
@@ -43,7 +42,7 @@ namespace Sample.Mvc3.Controllers
                         {
                             Amount = 10m,
                             Description = "Testing a new bill",
-                            MerchantId = MyMerchantId,
+                            MerchantId = Settings.MyMerchantId,
                             Name = "Test bill",
                             User = new UserRequest
                             {
@@ -62,7 +61,7 @@ namespace Sample.Mvc3.Controllers
                     new PreAuthorizationRequest
                         {
                             MaxAmount = 15m,
-                            MerchantId = MyMerchantId,
+                            MerchantId = Settings.MyMerchantId,
                             IntervalLength = 1,
                             IntervalUnit = "month",
 
@@ -83,6 +82,25 @@ namespace Sample.Mvc3.Controllers
                                 LastName = "Smith",
                             }
                         });
+
+                model.CreateMerchantUrl = PartnerClient.GetManageMerchantUrl(
+                    Settings.CreateMerchantRedirectUri,
+                    new Merchant
+                        {
+                            Name = "Mike the Merchant",
+                            BillingAddress1 = "Flat 1",
+                            BillingAddress2 = "200 High St",
+                            BillingTown = "Townville",
+                            BillingCounty = "Countyshire",
+                            BillingPostcode = "N1 1AB",
+                            User = new User
+                                       {
+                                           FirstName = "Mike",
+                                           LastName = "Merchant",
+                                           Email = "mike.merchant@example.com",
+                                       }
+                        }
+                    );
             }
             catch (Exception ex)
             {
@@ -95,35 +113,35 @@ namespace Sample.Mvc3.Controllers
         public ActionResult Merchant()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
-            ViewData.Model = GoCardless.Api.GetMerchant(MyMerchantId);
+            ViewData.Model = GoCardless.Api.GetMerchant(Settings.MyMerchantId);
             return View();
         }
 
         public ActionResult Bills()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
-            ViewData.Model = GoCardless.Api.GetMerchantBills(MyMerchantId);
+            ViewData.Model = GoCardless.Api.GetMerchantBills(Settings.MyMerchantId);
             return View();
         }
 
         public ActionResult Subscriptions()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
-            ViewData.Model = GoCardless.Api.GetMerchantSubscriptions(MyMerchantId);
+            ViewData.Model = GoCardless.Api.GetMerchantSubscriptions(Settings.MyMerchantId);
             return View();
         }
 
         public ActionResult PreAuthorizations()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
-            ViewData.Model = GoCardless.Api.GetMerchantPreAuthorizations(MyMerchantId);
+            ViewData.Model = GoCardless.Api.GetMerchantPreAuthorizations(Settings.MyMerchantId);
             return View();
         }
 
         public ActionResult Users()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
-            ViewData.Model = GoCardless.Api.GetMerchantUsers(MyMerchantId);
+            ViewData.Model = GoCardless.Api.GetMerchantUsers(Settings.MyMerchantId);
             return View();
         }
 
@@ -134,7 +152,7 @@ namespace Sample.Mvc3.Controllers
 
         public ActionResult Success()
         {
-            ViewData.Model = TempData["resource"];
+            ViewData.Model = TempData["payload"];
             return View();
         }
     }

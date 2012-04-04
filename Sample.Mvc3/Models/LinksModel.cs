@@ -10,6 +10,8 @@ namespace Sample.Mvc3.Models
         public string NewBillUrl { get; set; }
         public string NewSubscriptionUrl { get; set; }
         public string NewPreAuthorizationUrl { get; set; }
+        public string CreateMerchantUrl { get; set; }
+
         public string Error { get; set; }
     }
 }

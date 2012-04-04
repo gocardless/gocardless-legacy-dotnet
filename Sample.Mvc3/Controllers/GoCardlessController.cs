@@ -10,22 +10,13 @@ namespace Sample.Mvc3.Controllers
 {
     public class GoCardlessController : Controller
     {
-        static readonly List<ConfirmResource> Responses = new List<ConfirmResource>();
-
-        [HttpGet]
-        public ActionResult Show()
-        {
-            ViewData.Model = Responses;
-            return View();
-        }
-
         [HttpPost]
         public ContentResult Index()
         {
             var requestContent = new StreamReader(Request.InputStream).ReadToEnd();
             var payload = WebHooksClient.ParseRequest(requestContent);
             // TODO: store request payload.
-            //_responses.Add(payload);
+            
             // respond with status HTTP/1.1 200 OK within 5 seconds.
             // If the API server does not get a 200 OK response within this time,
             // it will retry up to 10 times at ever-increasing time intervals.
@@ -41,21 +32,24 @@ namespace Sample.Mvc3.Controllers
             var resource = ConnectClient.ConfirmResource(requestContent);
             
             // TODO: store request payload.
-            TempData["resource"] = resource;
+            TempData["payload"] = resource;
             
             return RedirectToAction("Success", "Home");
         }
 
         [HttpGet]
-        public void ReturnFromCreateMerchant()
+        public ActionResult CreateMerchantCallback(string code, string state)
         {
-            var requestContent = new StreamReader(Request.InputStream).ReadToEnd();
-            var merchantResponse = GoCardless.Partner.HandleCreateMerchantResponse(Request.Url.ToString(), requestContent);
+            var merchantResponse = GoCardless.Partner.ParseCreateMerchantResponse(Settings.CreateMerchantRedirectUri, code);
 
-            var merchantId = merchantResponse.MerchantId; //at this point you should save the merchant Id and access token...
-            var accessToken = merchantResponse.access_token; //...so that you can make calls on behalf of the merchant later...
-            var merchantApiClient = new ApiClient(accessToken); //...by initialising an ApiClient
+            // TODO: store response
+            TempData["payload"] = merchantResponse;
+            
+            // use ApiClient to make calls on behalf of merchant
+            var merchantApiClient = new ApiClient(merchantResponse.AccessToken);
+
+            return RedirectToAction("Success", "Home");
         }
-
+        
     }
 }

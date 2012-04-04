@@ -65,12 +65,9 @@
     <Compile Include="Connect\UserRequest.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="GoCardless.cs" />
-    <Compile Include="Partners\AuthorizeResponse.cs" />
-    <Compile Include="Partners\Merchant.cs" />
     <Compile Include="Partners\MerchantAccessTokenResponse.cs" />
     <Compile Include="Partners\PartnerClient.cs" />
-    <Compile Include="Partners\Prepopulated.cs" />
-    <Compile Include="Partners\User.cs" />
+    <Compile Include="Partners\ManageMerchantRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="WebHooks\GoCardlessRequest.cs" />

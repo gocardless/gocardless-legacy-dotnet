@@ -1,4 +1,5 @@
 using System.Net;
+using GoCardlessSdk.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -7,24 +8,38 @@ namespace GoCardlessSdk.Partners
 {
     public class PartnerClient
     {
-        private string _appId;
-        private string baseUrl;
-
-        public PartnerClient(string appId, string baseUrl)
+        public static string GetManageMerchantUrl(string redirectUri, Merchant merchant = null)
         {
-            _appId = appId;
-            this.baseUrl = baseUrl;
+            var @params = new ManageMerchantRequest
+                           {
+                               ClientId = GoCardless.AccountDetails.AppId,
+                               RedirectUri = redirectUri,
+                               ResponseType = "code",
+                               Scope = "manage_merchant",
+                               Merchant = merchant
+                           };
+
+            return GoCardless.BaseUrl + "/oauth/authorize?" + @params.ToQueryString();
         }
 
-        public MerchantAccessTokenResponse HandleCreateMerchantResponse(string redirectUri, string body)
+        public MerchantAccessTokenResponse ParseCreateMerchantResponse(string redirectUri, string code)
         {
-            // deserialize request content. (ensure content type is set to JSON in GoCardless setup)
-            var authResponse = JsonConvert.DeserializeObject<AuthorizeResponse>(body);
+            var hash = new Utils.HashParams
+                           {
+                               {"client_id", GoCardless.AccountDetails.AppId},
+                               {"redirect_uri", redirectUri},
+                               {"code", code},
+                               {"grant_type", "authorization_code"},
+                           };
+            var tokenUrl = "oauth/access_token?" + hash.ToQueryString();
 
-            var client = new RestSharp.RestClient(baseUrl);
-            var tokenUrl = "oauth/access_token?client_id=" + _appId + "&code=" + authResponse.code + "&redirect_uri=" + redirectUri + "&grant_type=authorization_code";
+            var client = new RestClient(GoCardless.BaseUrl);
+            client.Authenticator = new HttpBasicAuthenticator(GoCardless.AccountDetails.AppId, GoCardless.AccountDetails.AppSecret);
+
             var restRequest = new RestRequest(tokenUrl);
             restRequest.RequestFormat = DataFormat.Json;
+            restRequest.Method = Method.POST;
+
             var response = client.Execute<MerchantAccessTokenResponse>(restRequest);
             if (response.StatusCode == HttpStatusCode.OK)
             {

@@ -97,23 +97,14 @@
     <Compile Include="..\GoCardlessSdk\Helpers\Utils.cs">
       <Link>Helpers\Utils.cs</Link>
     </Compile>
-    <Compile Include="..\GoCardlessSdk\Partners\AuthorizeResponse.cs">
-      <Link>Partners\AuthorizeResponse.cs</Link>
-    </Compile>
-    <Compile Include="..\GoCardlessSdk\Partners\Merchant.cs">
-      <Link>Partners\Merchant.cs</Link>
+    <Compile Include="..\GoCardlessSdk\Partners\ManageMerchantRequest.cs">
+      <Link>Partners\ManageMerchantRequest.cs</Link>
     </Compile>
     <Compile Include="..\GoCardlessSdk\Partners\MerchantAccessTokenResponse.cs">
       <Link>Partners\MerchantAccessTokenResponse.cs</Link>
     </Compile>
     <Compile Include="..\GoCardlessSdk\Partners\PartnerClient.cs">
       <Link>Partners\PartnerClient.cs</Link>
-    </Compile>
-    <Compile Include="..\GoCardlessSdk\Partners\Prepopulated.cs">
-      <Link>Partners\Prepopulated.cs</Link>
-    </Compile>
-    <Compile Include="..\GoCardlessSdk\Partners\User.cs">
-      <Link>Partners\User.cs</Link>
     </Compile>
     <Compile Include="..\GoCardlessSdk\WebHooks\GoCardlessRequest.cs">
       <Link>WebHooks\GoCardlessRequest.cs</Link>
