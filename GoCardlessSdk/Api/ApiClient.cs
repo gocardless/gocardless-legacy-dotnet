@@ -13,7 +13,7 @@ namespace GoCardlessSdk.Api
         public static readonly string ApiPath = "/api/v1";
         public static string ApiUrl
         {
-            get { return GoCardlessSdk.GoCardless.BaseUrl + ApiPath; }
+            get { return GoCardless.BaseUrl + ApiPath; }
         }
 
         private readonly string _accessToken;
@@ -37,22 +37,22 @@ namespace GoCardlessSdk.Api
             return Execute<BillResponse>(restRequest);
         }
 
-        public IEnumerable<BillResponse> GetMerchantBills(string merchantId, string source_id = null, string subscription_id = null, string pre_authorization_id = null, string user_id = null, DateTimeOffset? before = null, DateTimeOffset? after = null, bool? paid = null)
+        public IEnumerable<BillResponse> GetMerchantBills(string merchantId, string sourceId = null, string subscriptionId = null, string preAuthorizationId = null, string userId = null, DateTimeOffset? before = null, DateTimeOffset? after = null, bool? paid = null)
         {
-            var options = new {source_id, subscription_id, pre_authorization_id, user_id, before, after, paid};
+            var options = new { source_id = sourceId, subscription_id = subscriptionId, pre_authorization_id = preAuthorizationId, user_id = userId, before, after, paid };
             var restRequest = GetRestRequest("merchants/" + merchantId + "/bills", Method.GET, options);
             return Execute<List<BillResponse>>(restRequest).AsReadOnly();
         }
         
-        public IEnumerable<PreAuthorizationResponse> GetMerchantPreAuthorizations(string merchantId, string user_id = null, DateTimeOffset? before = null, DateTimeOffset? after = null)
+        public IEnumerable<PreAuthorizationResponse> GetMerchantPreAuthorizations(string merchantId, string userId = null, DateTimeOffset? before = null, DateTimeOffset? after = null)
         {
-            var options = new {user_id, before, after};
+            var options = new {user_id = userId, before, after};
             var restRequest = GetRestRequest("merchants/" + merchantId + "/pre_authorizations", Method.GET, options);
             return Execute<List<PreAuthorizationResponse>>(restRequest).AsReadOnly();
         }
-        public IEnumerable<SubscriptionResponse> GetMerchantSubscriptions(string merchantId, string user_id = null, DateTimeOffset? before = null, DateTimeOffset? after = null)
+        public IEnumerable<SubscriptionResponse> GetMerchantSubscriptions(string merchantId, string userId = null, DateTimeOffset? before = null, DateTimeOffset? after = null)
         {
-            var options = new { user_id, before, after };
+            var options = new { user_id = userId, before, after };
             var restRequest = GetRestRequest("merchants/" + merchantId + "/subscriptions", Method.GET, options);
             return Execute<List<SubscriptionResponse>>(restRequest).AsReadOnly();
         }
@@ -123,7 +123,8 @@ namespace GoCardlessSdk.Api
                 try
                 {
                     ex.Content = JObject.Parse(response.Content);
-                }catch(Exception)
+                }
+                catch (Exception)
                 {
                 }
                 ex.RawContent = response.Content;
