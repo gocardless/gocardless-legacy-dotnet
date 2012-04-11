@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("GoCardless API SDK")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GoCardless")]
-[assembly: AssemblyProduct("GoCardless")]
+[assembly: AssemblyProduct("GoCardless SDK")]
 [assembly: AssemblyCopyright("Copyright © GoCardless 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
