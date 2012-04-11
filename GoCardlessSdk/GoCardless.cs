@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using GoCardlessSdk.Api;
+using GoCardlessSdk.Connect;
 using GoCardlessSdk.Helpers;
 using GoCardlessSdk.Partners;
 
@@ -43,6 +44,11 @@ namespace GoCardlessSdk
         public static ApiClient Api
         {
             get { return new ApiClient(AccountDetails.Token); }
+        }
+
+        public static ConnectClient Connect
+        {
+            get { return new ConnectClient(); }
         }
 
         public static PartnerClient Partner

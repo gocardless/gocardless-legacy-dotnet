@@ -163,15 +163,19 @@
     </Content>
     <Content Include="..\GoCardlessSdk.Tests\WebHooks\Data\Bill invalid signature.txt">
       <Link>WebHooks\Data\Bill invalid signature.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\GoCardlessSdk.Tests\WebHooks\Data\Bill.txt">
       <Link>WebHooks\Data\Bill.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\GoCardlessSdk.Tests\WebHooks\Data\PreAuthorization.txt">
       <Link>WebHooks\Data\PreAuthorization.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\GoCardlessSdk.Tests\WebHooks\Data\Subscription.txt">
       <Link>WebHooks\Data\Subscription.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

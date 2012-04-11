@@ -29,7 +29,7 @@ namespace Sample.Mvc3.Controllers
         public ActionResult ConfirmResource()
         {
             var requestContent = Request.QueryString;
-            var resource = ConnectClient.ConfirmResource(requestContent);
+            var resource = GoCardless.Connect.ConfirmResource(requestContent);
             
             // TODO: store request payload.
             TempData["payload"] = resource;

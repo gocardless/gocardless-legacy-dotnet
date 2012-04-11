@@ -4,6 +4,14 @@ namespace GoCardlessSdk.Connect
 {
     public class PreAuthorizationRequest
     {
+        public PreAuthorizationRequest(string merchantId, decimal maxAmount, int intervalLength, string intervalUnit)
+        {
+            MaxAmount = maxAmount;
+            MerchantId = merchantId;
+            IntervalLength = intervalLength;
+            IntervalUnit = intervalUnit;
+        }
+
         public decimal MaxAmount { get;  set; }
         public string MerchantId { get;  set; }
         public int IntervalLength { get;  set; }

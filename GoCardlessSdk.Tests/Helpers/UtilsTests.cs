@@ -28,10 +28,8 @@ namespace GoCardlessSdk.Tests.Helpers
         [Test]
         public void ToHashtableTests()
         {
-            var subscription = new SubscriptionRequest
+            var subscription = new SubscriptionRequest("merchant123", 2m, 1, "month")
                                    {
-                                       Amount = 2m,
-                                       MerchantId = "merchant123",
                                        User = new UserRequest
                                                   {
                                                       FirstName = "Tim",
@@ -88,22 +86,19 @@ namespace GoCardlessSdk.Tests.Helpers
         [Test]
         public void ToQueryStringTests()
         {
-            Assert.AreEqual("name=Tim", new UserRequest { Name = "Tim" }.ToQueryString());
+            Assert.AreEqual("name=Bob", new UserRequest {Name = "Bob"}.ToQueryString());
 
-            var subscription = new SubscriptionRequest
+            var subscription = new SubscriptionRequest("merchant123", 2m, 1, "month")
                                    {
-                                       Amount = 2m,
-                                       StartAt =
-                                           new DateTimeOffset(new DateTime(2011, 01, 01, 12, 00, 00)),
-                                       User =
-                                           new UserRequest
-                                               {
-                                                   Name = "Tim Iles",
-                                                   FirstName = "Tim",
-                                               }
+                                       StartAt = new DateTimeOffset(new DateTime(2011, 01, 01, 12, 00, 00)),
+                                       User = new UserRequest
+                                                  {
+                                                      Name = "John Smith",
+                                                      FirstName = "John",
+                                                  }
                                    };
             Assert.AreEqual(
-                "amount=2.00&interval_length=0&start_at=2011-01-01T12%3A00%3A00Z&user%5Bfirst_name%5D=Tim&user%5Bname%5D=Tim%20Iles",
+                "amount=2.00&interval_length=1&interval_unit=month&merchant_id=merchant123&start_at=2011-01-01T12%3A00%3A00Z&user%5Bfirst_name%5D=John&user%5Bname%5D=John%20Smith",
                 subscription.ToQueryString());
         }
 
@@ -127,7 +122,7 @@ namespace GoCardlessSdk.Tests.Helpers
             var model = new SignatureTestModel
                             {
                                 Foo = "bar",
-                                Example = new object[] {1, 'a'}
+                                Example = new object[] { 1, 'a' }
                             };
             var hash = model.ToHashParams();
             Assert.AreEqual("example%5B%5D=1&example%5B%5D=a&foo=bar", hash.ToQueryString());

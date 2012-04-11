@@ -4,6 +4,14 @@ namespace GoCardlessSdk.Connect
 {
     public class SubscriptionRequest
     {
+        public SubscriptionRequest(string merchantId, decimal amount, int intervalLength, string intervalUnit)
+        {
+            Amount = amount;
+            MerchantId = merchantId;
+            IntervalLength = intervalLength;
+            IntervalUnit = intervalUnit;
+        }
+
         public decimal Amount { get; set; }
         public string MerchantId { get; set; }
         public int IntervalLength { get; set; }

@@ -16,14 +16,11 @@ namespace Sample.Mvc3.Controllers
             var model = new LinksModel();
             try
             {
-                model.NewSubscriptionUrl = ConnectClient.NewSubscriptionUrl(
-                    new SubscriptionRequest
+                model.NewSubscriptionUrl = GoCardless.Connect.NewSubscriptionUrl(
+                    new SubscriptionRequest(Settings.MyMerchantId, 10m, 1, "month")
                         {
-                            Amount = 10m,
+                            Name = "Test subscription",
                             Description = "Testing a new monthly subscription",
-                            IntervalLength = 1,
-                            IntervalUnit = "month",
-                            MerchantId = Settings.MyMerchantId,
                             User = new UserRequest
                                        {
                                            BillingAddress1 = "Flat 1",
@@ -31,59 +28,52 @@ namespace Sample.Mvc3.Controllers
                                            BillingTown = "Townville",
                                            BillingCounty = "Countyshire",
                                            BillingPostcode = "N1 1AB",
-                                           Email = "john.smith@example.com",
+                                           Email = "john.smith14444@example.com",
                                            FirstName = "John",
                                            LastName = "Smith",
                                        }
                         });
 
-                model.NewBillUrl = ConnectClient.NewBillUrl(
-                    new BillRequest
+                model.NewBillUrl = GoCardless.Connect.NewBillUrl(
+                    new BillRequest(Settings.MyMerchantId, 10m)
                         {
-                            Amount = 10m,
-                            Description = "Testing a new bill",
-                            MerchantId = Settings.MyMerchantId,
                             Name = "Test bill",
+                            Description = "Testing a new bill",
                             User = new UserRequest
-                            {
-                                BillingAddress1 = "Flat 1",
-                                BillingAddress2 = "100 Main St",
-                                BillingTown = "Townville",
-                                BillingCounty = "Countyshire",
-                                BillingPostcode = "N1 1AB",
-                                Email = "john.smith@example.com",
-                                FirstName = "John",
-                                LastName = "Smith",
-                            }
+                                       {
+                                           BillingAddress1 = "Flat 1",
+                                           BillingAddress2 = "100 Main St",
+                                           BillingTown = "Townville",
+                                           BillingCounty = "Countyshire",
+                                           BillingPostcode = "N1 1AB",
+                                           Email = "john.smith345345345@example.com",
+                                           FirstName = "John",
+                                           LastName = "Smith",
+                                       }
                         });
 
-                model.NewPreAuthorizationUrl = ConnectClient.NewPreAuthorizationUrl(
-                    new PreAuthorizationRequest
+                model.NewPreAuthorizationUrl = GoCardless.Connect.NewPreAuthorizationUrl(
+                    new PreAuthorizationRequest(Settings.MyMerchantId, 15m, 1, "month")
                         {
-                            MaxAmount = 15m,
-                            MerchantId = Settings.MyMerchantId,
-                            IntervalLength = 1,
-                            IntervalUnit = "month",
-
                             ExpiresAt = DateTimeOffset.UtcNow.AddYears(1),
                             Name = "Test preauth",
                             Description = "Testing a new preauthorization",
                             IntervalCount = 12,
                             CalendarIntervals = true,
                             User = new UserRequest
-                            {
-                                BillingAddress1 = "Flat 1",
-                                BillingAddress2 = "100 Main St",
-                                BillingTown = "Townville",
-                                BillingCounty = "Countyshire",
-                                BillingPostcode = "N1 1AB",
-                                Email = "john.smith@example.com",
-                                FirstName = "John",
-                                LastName = "Smith",
-                            }
+                                       {
+                                           BillingAddress1 = "Flat 1",
+                                           BillingAddress2 = "100 Main St",
+                                           BillingTown = "Townville",
+                                           BillingCounty = "Countyshire",
+                                           BillingPostcode = "N1 1AB",
+                                           Email = "john.smith34534545@example.com",
+                                           FirstName = "John",
+                                           LastName = "Smith",
+                                       }
                         });
 
-                model.CreateMerchantUrl = PartnerClient.GetManageMerchantUrl(
+                model.CreateMerchantUrl = GoCardless.Partner.NewMerchantUrl(
                     Settings.CreateMerchantRedirectUri,
                     new Merchant
                         {
