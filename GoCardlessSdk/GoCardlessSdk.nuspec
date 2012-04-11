@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>GoCardless, Hat Tip Ltd</authors>
+    <owners>GoCardless, Hat Tip Ltd</owners>
+    <projectUrl>https://gocardless.com</projectUrl>
+    <iconUrl>https://gocardless.com/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <tags>Payments API</tags>
+  </metadata>
+</package>

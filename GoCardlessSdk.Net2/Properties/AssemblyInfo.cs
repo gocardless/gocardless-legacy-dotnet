@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GoCardlessSdk.Net2")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("GoCardless.NET2")]
+[assembly: AssemblyDescription(".NET2 API SDK for GoCardless.com")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("GoCardlessSdk.Net2")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
+[assembly: AssemblyCompany("GoCardless")]
+[assembly: AssemblyProduct("GoCardless .NET2")]
+[assembly: AssemblyCopyright("Copyright © GoCardless 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

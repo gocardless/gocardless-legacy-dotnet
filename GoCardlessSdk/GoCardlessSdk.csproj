@@ -74,6 +74,7 @@
     <Compile Include="WebHooks\WebHooksClient.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GoCardlessSdk.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
