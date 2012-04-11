@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GoCardlessSdk")]
+[assembly: AssemblyTitle("GoCardless")]
 [assembly: AssemblyDescription("GoCardless API SDK")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GoCardless")]
