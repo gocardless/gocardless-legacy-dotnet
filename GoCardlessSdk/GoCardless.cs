@@ -24,9 +24,9 @@ namespace GoCardlessSdk
         public static readonly Dictionary<Environments, string> BaseUrls =
             new Dictionary<Environments, string>
                 {
-                    {Environments.Test, "http://gocardless.com"},
                     {Environments.Production, "https://gocardless.com"},
-                    {Environments.Sandbox, "https://sandbox.gocardless.com"}
+                    {Environments.Sandbox, "https://sandbox.gocardless.com"},
+                    {Environments.Test, "http://gocardless.com"}
                 };
 
         private static string _baseUrl;
