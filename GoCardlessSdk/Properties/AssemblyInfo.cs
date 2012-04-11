@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("GoCardless")]
-[assembly: AssemblyDescription("API SDK for GoCardless.com")]
+[assembly: AssemblyDescription("GoCardless API SDK")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GoCardless")]
 [assembly: AssemblyProduct("GoCardless")]

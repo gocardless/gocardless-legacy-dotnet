@@ -4,14 +4,14 @@
     <id>$id$</id>
     <version>$version$</version>
     <title>$title$</title>
-    <authors>GoCardless, Hat Tip Ltd</authors>
+    <authors>$author$</authors>
     <owners>GoCardless, Hat Tip Ltd</owners>
     <projectUrl>https://gocardless.com</projectUrl>
-    <iconUrl>https://gocardless.com/favicon.ico</iconUrl>
+    <iconUrl>http://dl.dropbox.com/u/3093652/GC32x32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
+    <description>Get paid directly from your customers’ bank accounts. No merchant account. No credit card fees. No hassle.</description>
     <releaseNotes>Initial release</releaseNotes>
-    <copyright>Copyright 2012</copyright>
+    <copyright>Copyright 2012 GoCardless</copyright>
     <tags>Payments API</tags>
   </metadata>
 </package>
