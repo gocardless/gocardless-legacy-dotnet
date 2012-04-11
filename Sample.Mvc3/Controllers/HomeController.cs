@@ -1,23 +1,24 @@
 ﻿using System;
+using System.Configuration;
 using System.Web.Mvc;
 using GoCardlessSdk;
 using GoCardlessSdk.Connect;
 using GoCardlessSdk.Partners;
-using Sample.Mvc3.Models;
 
 namespace Sample.Mvc3.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly string _merchantId = ConfigurationManager.AppSettings["GoCardlessMerchantId"];
+
         public ActionResult Index()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
 
-            var model = new LinksModel();
             try
             {
-                model.NewSubscriptionUrl = GoCardless.Connect.NewSubscriptionUrl(
-                    new SubscriptionRequest(Settings.MyMerchantId, 10m, 1, "month")
+                ViewBag.NewSubscriptionUrl = GoCardless.Connect.NewSubscriptionUrl(
+                    new SubscriptionRequest(_merchantId, 10m, 1, "month")
                         {
                             Name = "Test subscription",
                             Description = "Testing a new monthly subscription",
@@ -28,14 +29,14 @@ namespace Sample.Mvc3.Controllers
                                            BillingTown = "Townville",
                                            BillingCounty = "Countyshire",
                                            BillingPostcode = "N1 1AB",
-                                           Email = "john.smith14444@example.com",
+                                           Email = "john.smith@example.com",
                                            FirstName = "John",
                                            LastName = "Smith",
                                        }
                         });
 
-                model.NewBillUrl = GoCardless.Connect.NewBillUrl(
-                    new BillRequest(Settings.MyMerchantId, 10m)
+                ViewBag.NewBillUrl = GoCardless.Connect.NewBillUrl(
+                    new BillRequest(_merchantId, 10m)
                         {
                             Name = "Test bill",
                             Description = "Testing a new bill",
@@ -46,14 +47,14 @@ namespace Sample.Mvc3.Controllers
                                            BillingTown = "Townville",
                                            BillingCounty = "Countyshire",
                                            BillingPostcode = "N1 1AB",
-                                           Email = "john.smith345345345@example.com",
+                                           Email = "john.smith@example.com",
                                            FirstName = "John",
                                            LastName = "Smith",
                                        }
                         });
 
-                model.NewPreAuthorizationUrl = GoCardless.Connect.NewPreAuthorizationUrl(
-                    new PreAuthorizationRequest(Settings.MyMerchantId, 15m, 1, "month")
+                ViewBag.NewPreAuthorizationUrl = GoCardless.Connect.NewPreAuthorizationUrl(
+                    new PreAuthorizationRequest(_merchantId, 15m, 1, "month")
                         {
                             ExpiresAt = DateTimeOffset.UtcNow.AddYears(1),
                             Name = "Test preauth",
@@ -67,14 +68,14 @@ namespace Sample.Mvc3.Controllers
                                            BillingTown = "Townville",
                                            BillingCounty = "Countyshire",
                                            BillingPostcode = "N1 1AB",
-                                           Email = "john.smith34534545@example.com",
+                                           Email = "john.smith@example.com",
                                            FirstName = "John",
                                            LastName = "Smith",
                                        }
                         });
 
-                model.CreateMerchantUrl = GoCardless.Partner.NewMerchantUrl(
-                    Settings.CreateMerchantRedirectUri,
+                ViewBag.CreateMerchantUrl = GoCardless.Partner.NewMerchantUrl(
+                    "http://localhost:12345/GoCardless/CreateMerchantCallback",
                     new Merchant
                         {
                             Name = "Mike the Merchant",
@@ -94,44 +95,44 @@ namespace Sample.Mvc3.Controllers
             }
             catch (Exception ex)
             {
-                model.Error = ex.Message;
+                ViewBag.Error = ex.Message;
             }
-            ViewData.Model = model;
+
             return View();
         }
 
         public ActionResult Merchant()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
-            ViewData.Model = GoCardless.Api.GetMerchant(Settings.MyMerchantId);
+            ViewData.Model = GoCardless.Api.GetMerchant(_merchantId);
             return View();
         }
 
         public ActionResult Bills()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
-            ViewData.Model = GoCardless.Api.GetMerchantBills(Settings.MyMerchantId);
+            ViewData.Model = GoCardless.Api.GetMerchantBills(_merchantId);
             return View();
         }
 
         public ActionResult Subscriptions()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
-            ViewData.Model = GoCardless.Api.GetMerchantSubscriptions(Settings.MyMerchantId);
+            ViewData.Model = GoCardless.Api.GetMerchantSubscriptions(_merchantId);
             return View();
         }
 
         public ActionResult PreAuthorizations()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
-            ViewData.Model = GoCardless.Api.GetMerchantPreAuthorizations(Settings.MyMerchantId);
+            ViewData.Model = GoCardless.Api.GetMerchantPreAuthorizations(_merchantId);
             return View();
         }
 
         public ActionResult Users()
         {
             GoCardless.Environment = GoCardless.Environments.Sandbox;
-            ViewData.Model = GoCardless.Api.GetMerchantUsers(Settings.MyMerchantId);
+            ViewData.Model = GoCardless.Api.GetMerchantUsers(_merchantId);
             return View();
         }
 

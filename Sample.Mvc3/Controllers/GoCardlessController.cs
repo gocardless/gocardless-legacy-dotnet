@@ -40,7 +40,8 @@ namespace Sample.Mvc3.Controllers
         [HttpGet]
         public ActionResult CreateMerchantCallback(string code, string state)
         {
-            var merchantResponse = GoCardless.Partner.ParseCreateMerchantResponse(Settings.CreateMerchantRedirectUri, code);
+            var merchantResponse = GoCardless.Partner.ParseCreateMerchantResponse(
+                "http://localhost:12345/GoCardless/CreateMerchantCallback", code);
 
             // TODO: store response
             TempData["payload"] = merchantResponse;

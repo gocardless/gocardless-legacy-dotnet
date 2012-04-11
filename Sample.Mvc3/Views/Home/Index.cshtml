@@ -1,24 +1,32 @@
-﻿@model Sample.Mvc3.Models.LinksModel
-@{
+﻿@{
     ViewBag.Title = "GoCardless Sandbox tests";
 }
-@if (Model.Error != null)
+@if (ViewBag.Error != null)
 {
     <p style="color: red">
-        ERROR: @Model.Error</p>
+        ERROR: @ViewBag.Error</p>
+    <p>If you have not yet set up your app keys, please supply the following in your web.config:</p>
+    <pre>
+  &lt;appSettings&gt;
+    &lt;add key="GoCardlessAppId" value="Your App identifier"/&gt;
+    &lt;add key="GoCardlessAppSecret" value="Your App secret"/&gt;
+    &lt;add key="GoCardlessAccessToken" value="Your Merchant access token"/&gt;
+    &lt;add key="GoCardlessMerchantId" value="Your Merchant id"/&gt;
+  &lt;/appSettings&gt;
+    </pre>
 }
 else
 {
     <p>
-        <a href="@Model.NewBillUrl">Create new bill</a>
+        <a href="@ViewBag.NewBillUrl">Create new bill</a>
     </p>
     <p>
-        <a href="@Model.NewPreAuthorizationUrl">Create new preauthorization</a>
+        <a href="@ViewBag.NewPreAuthorizationUrl">Create new preauthorization</a>
     </p>
     <p>
-        <a href="@Model.NewSubscriptionUrl">Create new subscription</a>
+        <a href="@ViewBag.NewSubscriptionUrl">Create new subscription</a>
     </p>
     <p>
-        <a href="@Model.CreateMerchantUrl">Create merchant</a>
+        <a href="@ViewBag.CreateMerchantUrl">Create merchant</a>
     </p>
 }
