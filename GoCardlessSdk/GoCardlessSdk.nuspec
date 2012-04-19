@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>GoCardless</id>
-    <version>1.0.0</version>
+    <version>0.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>GoCardless, Hat Tip Ltd</owners>
