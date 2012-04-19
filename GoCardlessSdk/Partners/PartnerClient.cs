@@ -33,7 +33,11 @@ namespace GoCardlessSdk.Partners
                            };
             var tokenUrl = "oauth/access_token?" + hash.ToQueryString();
 
-            var client = new RestClient(GoCardless.BaseUrl);
+            var client = new RestClient
+                             {
+                                 BaseUrl = GoCardless.BaseUrl,
+                                 UserAgent = GoCardless.UserAgent
+                             };
             client.Authenticator = new HttpBasicAuthenticator(GoCardless.AccountDetails.AppId, GoCardless.AccountDetails.AppSecret);
 
             var restRequest = new RestRequest(tokenUrl);

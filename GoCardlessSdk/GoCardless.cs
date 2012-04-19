@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using GoCardlessSdk.Api;
 using GoCardlessSdk.Connect;
 using GoCardlessSdk.Helpers;
@@ -57,6 +58,23 @@ namespace GoCardlessSdk
         }
 
 
+        public static string UserAgent
+        {
+            get { return "gocardless-dotnet/v" + AssemblyVersion; }
+        }
+        public static readonly string AssemblyVersion = GetAssemblyFileVersion();
+        public static string GetAssemblyFileVersion()
+        {
+            Assembly assembly = Assembly.GetAssembly(typeof (GoCardless));
+            var attributes = assembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute), false)
+                    as AssemblyFileVersionAttribute[];
+
+            if (attributes != null && attributes.Length == 1)
+            {
+                return attributes[0].Version;
+            }
+            return "";
+        }
 
         private static Func<string> _generateNonce;
         internal static Func<string> GenerateNonce

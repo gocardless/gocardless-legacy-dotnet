@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using GoCardlessSdk.Helpers;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -105,9 +106,10 @@ namespace GoCardlessSdk.Api
         public T Execute<T>(RestRequest request, HttpStatusCode expected = HttpStatusCode.OK) where T : new()
         {
             var client = new RestClient
-            {
-                BaseUrl = ApiUrl,
-            };
+                             {
+                                 BaseUrl = ApiUrl,
+                                 UserAgent = GoCardless.UserAgent
+                             };
             var serializer = new Newtonsoft.Json.JsonSerializer
             {
                 ContractResolver = new UnderscoreToCamelCasePropertyResolver(),
