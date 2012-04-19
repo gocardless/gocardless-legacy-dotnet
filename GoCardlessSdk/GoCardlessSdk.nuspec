@@ -7,7 +7,7 @@
     <authors>$author$</authors>
     <owners>GoCardless, Hat Tip Ltd</owners>
     <projectUrl>https://gocardless.com</projectUrl>
-    <iconUrl>http://dl.dropbox.com/u/3093652/GC32x32.png</iconUrl>
+    <iconUrl>https://github.com/gocardless/gocardless-dotnet/raw/master/GoCardlessSdk/gocardless-square%202.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Get paid directly from your customers’ bank accounts. No merchant account. No credit card fees. No hassle.</description>
     <releaseNotes>Initial release</releaseNotes>
