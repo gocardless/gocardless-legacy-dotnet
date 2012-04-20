@@ -58,12 +58,19 @@ namespace GoCardlessSdk
         }
 
 
-        public static string UserAgent
+        internal static string UserAgent = GetUserAgent();
+        private static string GetUserAgent()
         {
-            get { return "gocardless-dotnet/v" + AssemblyVersion; }
+            try
+            {
+                return "gocardless-dotnet/v" + GetAssemblyFileVersion();
+            }
+            catch
+            {
+                return "gocardless-dotnet";
+            }
         }
-        public static readonly string AssemblyVersion = GetAssemblyFileVersion();
-        public static string GetAssemblyFileVersion()
+        private static string GetAssemblyFileVersion()
         {
             Assembly assembly = Assembly.GetAssembly(typeof (GoCardless));
             var attributes = assembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute), false)
