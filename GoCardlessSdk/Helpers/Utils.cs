@@ -95,10 +95,12 @@ namespace GoCardlessSdk.Helpers
             }
             if (o is decimal)
             {
-                return ((decimal) o).ToString("N2");
+                return ((decimal) o).ToString("0.00");
             }
             return o.ToString().PercentEncode();
         }
+
+
 
         internal static HashParams ToHashParams(
             this object queryStringable, HashParams hash = null, string prefix = null)

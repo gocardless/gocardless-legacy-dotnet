@@ -6,6 +6,23 @@ namespace GoCardlessSdk.Tests.Connect
 {
     public class ConnectTests
     {
+
+        [Test]
+        public void NewBillUrl_GreaterThan1000_GeneratesCorrectUrl()
+        {
+            var request = new BillRequest("0190G74E3J", 1000m);
+            GoCardless.Environment = GoCardless.Environments.Sandbox;
+            GoCardless.AccountDetails.AppId = "test_id";
+            GoCardless.AccountDetails.AppSecret = "test_secret";
+            GoCardless.GenerateNonce = () => "Q9gMPVBZixfRiQ9VnRdDyrrMiskqT0ox8IT+HO3ReWMxavlco0Fw8rva+ZcI";
+            GoCardless.GetUtcNow = () => new DateTimeOffset(new DateTime(2012, 03, 21, 08, 55, 56));
+
+            var url = GoCardless.Connect.NewBillUrl(request);
+            var expected =
+                "https://sandbox.gocardless.com/connect/bills/new?bill%5Bamount%5D=1000.00&bill%5Bmerchant_id%5D=0190G74E3J&client_id=test_id&nonce=Q9gMPVBZixfRiQ9VnRdDyrrMiskqT0ox8IT%2BHO3ReWMxavlco0Fw8rva%2BZcI&signature=d65039ed59c227bcfa96e3bc1b3d42562a11806db57086509fba17c0028b3f76&timestamp=2012-03-21T08%3A55%3A56Z";
+            Assert.AreEqual(expected, url);
+        }
+
         [Test]
         public void NewBillUrl_ExcOptionalParams_GeneratesCorrectUrl()
         {
