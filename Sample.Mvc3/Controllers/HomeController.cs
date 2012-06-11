@@ -90,7 +90,8 @@ namespace Sample.Mvc3.Controllers
                                            LastName = "Merchant",
                                            Email = "mike.merchant@example.com",
                                        }
-                        }
+                        },
+                        state: "test_state"
                     );
             }
             catch (Exception ex)

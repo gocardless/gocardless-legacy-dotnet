@@ -8,7 +8,7 @@ namespace GoCardlessSdk.Partners
 {
     public class PartnerClient
     {
-        public string NewMerchantUrl(string redirectUri, Merchant merchant = null)
+        public string NewMerchantUrl(string redirectUri, Merchant merchant = null, string state = null)
         {
             var request = new ManageMerchantRequest
                            {
@@ -16,7 +16,8 @@ namespace GoCardlessSdk.Partners
                                RedirectUri = redirectUri,
                                ResponseType = "code",
                                Scope = "manage_merchant",
-                               Merchant = merchant
+                               Merchant = merchant,
+                               State = state
                            };
 
             return GoCardless.BaseUrl + "/oauth/authorize?" + request.ToQueryString();

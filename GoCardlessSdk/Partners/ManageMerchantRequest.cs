@@ -8,6 +8,7 @@
         public string Scope { get; set; }
 
         public Merchant Merchant { get; set; }
+        public string State { get; set; }
     }
     public class Merchant
     {
