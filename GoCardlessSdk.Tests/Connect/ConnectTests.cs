@@ -148,6 +148,7 @@ namespace GoCardlessSdk.Tests.Connect
                                   Name = "Premium Account",
                                   Description = "test subscription",
                                   IntervalCount = 12,
+                                  SetupFee = 10,
                                   User = new UserRequest
                                              {
                                                  Name = "John Smith",
@@ -165,12 +166,12 @@ namespace GoCardlessSdk.Tests.Connect
             GoCardless.AccountDetails.AppId = "test_id";
             GoCardless.AccountDetails.AppSecret = "test_secret";
             GoCardless.GenerateNonce = () => "Q9gMPVBZixfRiQ9VnRdDyrrMiskqT0ox8IT+HO3ReWMxavlco0Fw8rva+ZcI";
-            GoCardless.GetUtcNow = () => new DateTimeOffset(new DateTime(2012, 03, 21, 08, 55, 56));
+            GoCardless.GetUtcNow = () => new DateTimeOffset(new DateTime(2012, 03, 21, 13, 08, 56));
 
             var url = GoCardless.Connect.NewSubscriptionUrl(request);
-            var expected =
-                "https://sandbox.gocardless.com/connect/subscriptions/new?client_id=test_id&nonce=Q9gMPVBZixfRiQ9VnRdDyrrMiskqT0ox8IT%2BHO3ReWMxavlco0Fw8rva%2BZcI&signature=7b5a1fe9abc37a21c9cd8b22cd09dfbca9ec3d8d9cd1083796c6a4cbef666984&subscription%5Bamount%5D=15.00&subscription%5Bdescription%5D=test%20subscription&subscription%5Bexpires_at%5D=2013-03-24T19%3A32%3A22Z&subscription%5Binterval_count%5D=12&subscription%5Binterval_length%5D=1&subscription%5Binterval_unit%5D=month&subscription%5Bmerchant_id%5D=0190G74E3J&subscription%5Bname%5D=Premium%20Account&subscription%5Bstart_at%5D=2012-03-24T19%3A32%3A22Z&subscription%5Buser%5D%5Bbilling_address1%5D=Flat%201&subscription%5Buser%5D%5Bbilling_address2%5D=100%20Main%20Street&subscription%5Buser%5D%5Bbilling_county%5D=Countyshire&subscription%5Buser%5D%5Bbilling_postcode%5D=N1%201AB&subscription%5Buser%5D%5Bbilling_town%5D=Townville&subscription%5Buser%5D%5Bemail%5D=john.smith%40example.com&subscription%5Buser%5D%5Bfirst_name%5D=John&subscription%5Buser%5D%5Blast_name%5D=Smith&subscription%5Buser%5D%5Bname%5D=John%20Smith&timestamp=2012-03-21T08%3A55%3A56Z";
-            Assert.AreEqual(expected, url);
+			Console.WriteLine(url);
+			var expected = "https://sandbox.gocardless.com/connect/subscriptions/new?client_id=test_id&nonce=Q9gMPVBZixfRiQ9VnRdDyrrMiskqT0ox8IT%2BHO3ReWMxavlco0Fw8rva%2BZcI&signature=26cc02eeb1e24d98ed584a89d224b2f904c2611e1d976a635b0fb4dfc092713b&subscription%5Bamount%5D=15.00&subscription%5Bdescription%5D=test%20subscription&subscription%5Bexpires_at%5D=2013-03-24T19%3A32%3A22Z&subscription%5Binterval_count%5D=12&subscription%5Binterval_length%5D=1&subscription%5Binterval_unit%5D=month&subscription%5Bmerchant_id%5D=0190G74E3J&subscription%5Bname%5D=Premium%20Account&subscription%5Bsetup_fee%5D=10.00&subscription%5Bstart_at%5D=2012-03-24T19%3A32%3A22Z&subscription%5Buser%5D%5Bbilling_address1%5D=Flat%201&subscription%5Buser%5D%5Bbilling_address2%5D=100%20Main%20Street&subscription%5Buser%5D%5Bbilling_county%5D=Countyshire&subscription%5Buser%5D%5Bbilling_postcode%5D=N1%201AB&subscription%5Buser%5D%5Bbilling_town%5D=Townville&subscription%5Buser%5D%5Bemail%5D=john.smith%40example.com&subscription%5Buser%5D%5Bfirst_name%5D=John&subscription%5Buser%5D%5Blast_name%5D=Smith&subscription%5Buser%5D%5Bname%5D=John%20Smith&timestamp=2012-03-21T13%3A08%3A56Z";
+		    Assert.AreEqual(expected, url);
         }
     }
 }

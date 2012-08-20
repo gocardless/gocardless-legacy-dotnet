@@ -10,7 +10,7 @@ namespace GoCardlessSdk.Tests.WebHooks
         [Test]
         public void Bill_InvalidSignature_ThrowsException()
         {
-            var request = File.ReadAllText("./Webhooks/Data/Bill invalid signature.txt");
+            var request = File.ReadAllText("./WebHooks/Data/Bill invalid signature.txt");
             GoCardless.AccountDetails.AppSecret = "test_secret";
             Assert.Throws<SignatureException>(() => WebHooksClient.ParseRequest(request));
         }
@@ -18,7 +18,7 @@ namespace GoCardlessSdk.Tests.WebHooks
         [Test]
         public void Bill_PayloadDeserializesOk()
         {
-            var request = File.ReadAllText("./Webhooks/Data/Bill.txt");
+            var request = File.ReadAllText("./WebHooks/Data/Bill.txt");
             GoCardless.AccountDetails.AppSecret = "test_secret";
 
             var payload = WebHooksClient.ParseRequest(request);
@@ -48,7 +48,7 @@ namespace GoCardlessSdk.Tests.WebHooks
         [Test]
         public void PreAuthorization_PayloadDeserializesOk()
         {
-            var request = File.ReadAllText("./Webhooks/Data/PreAuthorization.txt");
+            var request = File.ReadAllText("./WebHooks/Data/PreAuthorization.txt");
             GoCardless.AccountDetails.AppSecret = "test_secret";
             
             var payload = WebHooksClient.ParseRequest(request);
@@ -72,7 +72,7 @@ namespace GoCardlessSdk.Tests.WebHooks
         [Test]
         public void Subscription_PayloadDeserializesOk()
         {
-            var request = File.ReadAllText("./Webhooks/Data/Subscription.txt");
+            var request = File.ReadAllText("./WebHooks/Data/Subscription.txt");
             GoCardless.AccountDetails.AppSecret = "test_secret";
 
             var payload = WebHooksClient.ParseRequest(request);
