@@ -98,7 +98,7 @@ namespace GoCardlessSdk.Tests.Helpers
                                                   }
                                    };
             Assert.AreEqual(
-                "amount=2.00&interval_length=1&interval_unit=month&merchant_id=merchant123&start_at=2011-01-01T12%3A00%3A00Z&user%5Bfirst_name%5D=John&user%5Bname%5D=John%20Smith",
+                "amount=2.00&interval_length=1&interval_unit=month&merchant_id=merchant123&setup_fee=0.00&start_at=2011-01-01T12%3A00%3A00Z&user%5Bfirst_name%5D=John&user%5Bname%5D=John%20Smith",
                 subscription.ToQueryString());
         }
 
