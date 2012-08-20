@@ -22,7 +22,7 @@ namespace GoCardlessSdk.Connect
         public string Name { get; set; }
         public string Description { get; set; }
         public int? IntervalCount { get; set; }
-        public decimal SetupFee { get; set; }
+        public decimal? SetupFee { get; set; }
 
         public UserRequest User { get; set; }
     }
