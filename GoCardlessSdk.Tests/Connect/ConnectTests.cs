@@ -148,7 +148,7 @@ namespace GoCardlessSdk.Tests.Connect
                                   Name = "Premium Account",
                                   Description = "test subscription",
                                   IntervalCount = 12,
-                                  SetupFee = 10.00,
+                                  SetupFee = 10,
                                   User = new UserRequest
                                              {
                                                  Name = "John Smith",
