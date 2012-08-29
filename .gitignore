@@ -22,3 +22,5 @@ Visual Studio 2010/
 packages/NHibernateProfiler.1.0.0.920/tools/log.txt
 
 Sample.Mvc3/GoCardlessAppSettings.config
+GoCardlessSdk.Tests/test-results
+GoCardlessSdk.userprefs
