@@ -19,7 +19,7 @@ namespace GoCardlessSdk.Tests.WebHooks
         public void Bill_PayloadDeserializesOk()
         {
             var request = File.ReadAllText("./WebHooks/Data/Bill.txt");
-            GoCardless.AccountDetails.AppSecret = "test_secret";
+            GoCardless.AccountDetails.AppSecret = "E9XTYW9EJV2P4FRTDTRCTREH1PSADHBWFSM7D6W6PJ3W2S8FF6G9K25PEPXXRF9N";
 
             var payload = WebHooksClient.ParseRequest(request);
 
