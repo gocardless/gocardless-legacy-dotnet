@@ -18,6 +18,8 @@ namespace GoCardlessSdk.WebHooks
             {
                 ContractResolver = new UnderscoreToCamelCasePropertyResolver(),
             };
+			serializer.MissingMemberHandling = MissingMemberHandling.Ignore;
+
             var payload = serializer.Deserialize<GoCardlessRequest>(new JsonTextReader(new StringReader(content))).Payload;
 
             // validate the HMAC digest by resigning the received parameters

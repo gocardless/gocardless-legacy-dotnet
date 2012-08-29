@@ -1,0 +1,16 @@
+{
+  "payload": {
+    "bills": [
+      {
+        "id": "ssssa",
+        "status": "pending",
+        "uri": "https://gocardless.com/api/v1/bills/ssssa",
+        "amount": "20.0",
+        "amount_minus_fees": "19.8"
+      }
+    ],
+    "resource_type": "bill",
+    "action": "created",
+    "signature": "c6f28fd83919c704969a56622ff29602060e03622ae0663608b7cf296a2d9413"
+  }
+}

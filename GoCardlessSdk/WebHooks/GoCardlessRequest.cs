@@ -21,7 +21,7 @@ namespace GoCardlessSdk.WebHooks
             public string Status { get; set; }
             public string SourceType { get; set; }
             public string SourceId { get; set; }
-            public DateTimeOffset PaidAt { get; set; }
+            public DateTimeOffset? PaidAt { get; set; }
             public string Uri { get; set; }
 			public string Amount { get; set; }
 			public string AmountMinusFees { get; set; }

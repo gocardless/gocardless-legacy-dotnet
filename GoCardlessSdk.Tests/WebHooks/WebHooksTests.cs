@@ -45,6 +45,18 @@ namespace GoCardlessSdk.Tests.WebHooks
             Assert.AreEqual("https://sandbox.gocardless.com/api/v1/bills/AKJ398H8KB", payload.Bills[1].Uri); 
         }
 
+		/// <summary>
+		/// Exposes a bug where webhooks without a 'PaidAt' attribute were failing validation.
+		/// </summary>
+		[Test]
+		public void Bill_WithPaidAtValidates ()
+		{
+			var request = File.ReadAllText("./WebHooks/Data/BillCreated.txt");
+			GoCardless.AccountDetails.AppSecret = "E9XTYW9EJV2P4FRTDTRCTREH1PSADHBWFSM7D6W6PJ3W2S8FF6G9K25PEPXXRF9N";
+
+			var payload = WebHooksClient.ParseRequest(request);
+		}
+
         [Test]
         public void PreAuthorization_PayloadDeserializesOk()
         {
