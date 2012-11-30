@@ -21,6 +21,7 @@ namespace GoCardlessSdk.Api
         public decimal PendingBalance { get; set; }
         public DateTimeOffset NextPayoutDate { get; set; }
         public decimal NextPayoutAmount { get; set; }
+        public bool HideVariableAmount { get; set; }
         public SubResourceUrisResponse SubResourceUris { get; set; }
 
         internal ApiClient ApiClient { get; set; }
