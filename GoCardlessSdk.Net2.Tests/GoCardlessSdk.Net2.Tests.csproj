@@ -169,6 +169,10 @@
       <Link>WebHooks\Data\Bill.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\GoCardlessSdk.Tests\WebHooks\Data\BillCreated.txt">
+      <Link>WebHooks\Data\BillCreated.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\GoCardlessSdk.Tests\WebHooks\Data\PreAuthorization.txt">
       <Link>WebHooks\Data\PreAuthorization.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
