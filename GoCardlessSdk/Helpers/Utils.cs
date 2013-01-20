@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -95,7 +96,7 @@ namespace GoCardlessSdk.Helpers
             }
             if (o is decimal)
             {
-                return ((decimal) o).ToString("0.00");
+                return ((decimal) o).ToString("0.00", CultureInfo.InvariantCulture);
             }
             return o.ToString().PercentEncode();
         }

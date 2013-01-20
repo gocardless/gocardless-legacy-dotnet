@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
 using GoCardlessSdk.Connect;
 using NUnit.Framework;
 
@@ -20,6 +22,25 @@ namespace GoCardlessSdk.Tests.Connect
             var url = GoCardless.Connect.NewBillUrl(request);
             var expected =
                 "https://sandbox.gocardless.com/connect/bills/new?bill%5Bamount%5D=1000.00&bill%5Bmerchant_id%5D=0190G74E3J&client_id=test_id&nonce=Q9gMPVBZixfRiQ9VnRdDyrrMiskqT0ox8IT%2BHO3ReWMxavlco0Fw8rva%2BZcI&signature=d65039ed59c227bcfa96e3bc1b3d42562a11806db57086509fba17c0028b3f76&timestamp=2012-03-21T08%3A55%3A56Z";
+            Assert.AreEqual(expected, url);
+        }
+
+        [Test]
+        public void NewBillUrl_UkrainianCulture_GeneratesCorrectUrl()
+        {
+            // test Ukrainian culture, where numbers are formatted 0,00
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("uk-UA");
+
+            var request = new BillRequest("0190G74E3J", 10.45m);
+            GoCardless.Environment = GoCardless.Environments.Sandbox;
+            GoCardless.AccountDetails.AppId = "test_id";
+            GoCardless.AccountDetails.AppSecret = "test_secret";
+            GoCardless.GenerateNonce = () => "Q9gMPVBZixfRiQ9VnRdDyrrMiskqT0ox8IT+HO3ReWMxavlco0Fw8rva+ZcI";
+            GoCardless.GetUtcNow = () => new DateTimeOffset(new DateTime(2012, 03, 21, 08, 55, 56));
+
+            var url = GoCardless.Connect.NewBillUrl(request);
+            var expected =
+                "https://sandbox.gocardless.com/connect/bills/new?bill%5Bamount%5D=10.45&bill%5Bmerchant_id%5D=0190G74E3J&client_id=test_id&nonce=Q9gMPVBZixfRiQ9VnRdDyrrMiskqT0ox8IT%2BHO3ReWMxavlco0Fw8rva%2BZcI&signature=2b67e51028b69a67f0f08c67282386ec625a9b78ebc1936c786602897c52f268&timestamp=2012-03-21T08%3A55%3A56Z";
             Assert.AreEqual(expected, url);
         }
 
