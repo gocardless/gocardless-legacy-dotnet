@@ -22,7 +22,7 @@ namespace GoCardlessSdk.Helpers
             Culture = CultureInfo.InvariantCulture;
         }
 
-        public T Deserialize<T>(IRestResponse response)
+        public T Deserialize<T>(RestResponse response) where T : new()
         {
             using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(response.Content)))
             using (var streamReader = new StreamReader(ms))
