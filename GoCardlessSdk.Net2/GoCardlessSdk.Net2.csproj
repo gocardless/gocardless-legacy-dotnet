@@ -88,6 +88,9 @@
     <Compile Include="..\GoCardlessSdk\GoCardless.cs">
       <Link>GoCardless.cs</Link>
     </Compile>
+    <Compile Include="..\GoCardlessSdk\Helpers\NewtonsoftJsonSerializer.cs">
+      <Link>Helpers\NewtonsoftJsonSerializer.cs</Link>
+    </Compile>
     <Compile Include="..\GoCardlessSdk\Helpers\UnderscoreToCamelCasePropertyResolver.cs">
       <Link>Helpers\UnderscoreToCamelCasePropertyResolver.cs</Link>
     </Compile>

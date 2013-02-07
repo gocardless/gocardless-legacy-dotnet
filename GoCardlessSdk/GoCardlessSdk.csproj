@@ -52,6 +52,9 @@
     <Compile Include="Api\ApiClient.cs" />
     <Compile Include="Api\BillResponse.cs" />
     <Compile Include="Helpers\NewtonsoftJsonDeserializer.cs" />
+    <Compile Include="Helpers\NewtonsoftJsonSerializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Helpers\UnderscoreToCamelCasePropertyResolver.cs" />
     <Compile Include="Api\MerchantResponse.cs" />
     <Compile Include="Api\PreAuthorizationResponse.cs" />
