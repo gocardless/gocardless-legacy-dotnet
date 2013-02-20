@@ -6,6 +6,7 @@ using System.Net.Mime;
 using GoCardlessSdk.Helpers;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using RestSharp.Serializers;
 
 namespace GoCardlessSdk.Api
 {
@@ -86,7 +87,11 @@ namespace GoCardlessSdk.Api
 
         private static RestRequest GetRestRequest(string resource, Method method, object options = null)
         {
-            var request = new RestRequest(resource, method) {RequestFormat = DataFormat.Json};
+            var request = new RestRequest(resource, method)
+                              {
+                                  RequestFormat = DataFormat.Json,
+                                  JsonSerializer = new NewtonsoftJsonSerializer()
+                              };
             if (options != null)
             {
                 foreach (var arg in ToHash(options).Where(arg => arg.Value != null))
