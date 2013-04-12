@@ -25,6 +25,8 @@ namespace GoCardlessSdk.WebHooks
             public string Uri { get; set; }
 			public string Amount { get; set; }
 			public string AmountMinusFees { get; set; }
+            public string MerchantId { get; set; }
+            public string UserId { get; set; }
         }
 
         public class PreAuthorization

@@ -36,13 +36,18 @@ namespace GoCardlessSdk.Tests.WebHooks
             Assert.AreEqual("KKJ398H8K8", payload.Bills[0].SourceId);
             Assert.AreEqual(new DateTimeOffset(new DateTime(2011, 12, 01, 12, 01, 23)), payload.Bills[0].PaidAt);
             Assert.AreEqual("https://sandbox.gocardless.com/api/v1/bills/AKJ398H8KA", payload.Bills[0].Uri);
+            Assert.AreEqual("040NF42M1F", payload.Bills[0].MerchantId);
+            Assert.AreEqual("0AR5NV7TYC", payload.Bills[0].UserId);
 
             Assert.AreEqual("AKJ398H8KB", payload.Bills[1].Id);
             Assert.AreEqual("paid", payload.Bills[1].Status);
             Assert.AreEqual("subscription", payload.Bills[1].SourceType);
             Assert.AreEqual("8AKJ398H78", payload.Bills[1].SourceId);
             Assert.AreEqual(new DateTimeOffset(new DateTime(2011, 12, 09, 23, 04, 56)), payload.Bills[1].PaidAt);
-            Assert.AreEqual("https://sandbox.gocardless.com/api/v1/bills/AKJ398H8KB", payload.Bills[1].Uri); 
+            Assert.AreEqual("https://sandbox.gocardless.com/api/v1/bills/AKJ398H8KB", payload.Bills[1].Uri);
+            Assert.AreEqual("040NF42M1F", payload.Bills[1].MerchantId);
+            Assert.AreEqual("0AR5NV7TYC", payload.Bills[1].UserId);
+
         }
 
 		/// <summary>

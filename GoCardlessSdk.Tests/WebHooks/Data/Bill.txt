@@ -11,7 +11,9 @@
                 "paid_at": "2011-12-01T12:01:23Z",
                 "uri": "https://sandbox.gocardless.com/api/v1/bills/AKJ398H8KA",
                 "amount": "20.0",
-                "amount_minus_fees":"19.8"
+                "amount_minus_fees":"19.8",
+				"merchant_id":"040NF42M1F",
+				"user_id":"0AR5NV7TYC",
             },
             {
                 "id": "AKJ398H8KB",
@@ -21,9 +23,11 @@
                 "paid_at": "2011-12-09T23:04:56Z",
                 "uri": "https://sandbox.gocardless.com/api/v1/bills/AKJ398H8KB",	
                 "amount": "20.0",
-                "amount_minus_fees":"19.8"
+                "amount_minus_fees":"19.8",
+				"merchant_id":"040NF42M1F",
+				"user_id":"0AR5NV7TYC",
             }
         ],
-        "signature": "5c5ae3507d1edb2d6da19b270a1df2b5401c91b9effc3a1ab0d56124ecbda1f0"
+        "signature": "972e31d9a888e970de1d245f69c78ff111de3958eca2058b29681c01c97404f6"
     }
 }
