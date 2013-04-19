@@ -85,6 +85,11 @@ namespace GoCardlessSdk.Api
             return Execute<PreAuthorizationResponse>(restRequest);
         }
 
+        public BillResponse RetryBill(string id)
+        {
+            var restRequest = GetRestRequest(string.Format("bills/{0}/retry", id), Method.POST);
+            return Execute<BillResponse>(restRequest, HttpStatusCode.Created);
+        }
 
         private static RestRequest GetRestRequest(string resource, Method method, object options = null)
         {

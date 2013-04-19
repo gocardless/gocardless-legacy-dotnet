@@ -110,6 +110,9 @@
     <Content Include="Api\Data\POST gocardless.com_api_v1_bills.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Api\Data\POST gocardless.com_api_v1_bills_AJKH338A19_retry.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Api\Data\PUT gocardless.com_api_v1_pre_authorizations_1580_cancel.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

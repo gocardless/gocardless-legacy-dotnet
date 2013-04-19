@@ -48,5 +48,20 @@ namespace GoCardlessSdk.Tests.Api
             var expected = JObject.Parse("{bill: { amount: '44', pre_authorization_id: 'AJKH638A99', name: 'some name', description: 'some description' }}");
             Assert.AreEqual(expected.ToString(), JObject.Parse(body).ToString());
         }
+
+        [Test]
+        public void PostsRetryCorrectly()
+        {
+            var url = null as string;
+            Fiddler.SessionStateHandler inspect = s =>
+            {
+                url = s.url;
+            };
+
+            Fiddler.FiddlerApplication.BeforeRequest += inspect;
+            new ApiClient("asdf").RetryBill("AJKH338A19");
+            Fiddler.FiddlerApplication.BeforeRequest -= inspect;
+            Assert.AreEqual("gocardless.com/api/v1/bills/AJKH338A19/retry", url);
+        }
     }
 }
