@@ -78,7 +78,9 @@
     <Compile Include="WebHooks\WebHooksClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GoCardlessSdk.nuspec" />
+    <None Include="GoCardlessSdk.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
