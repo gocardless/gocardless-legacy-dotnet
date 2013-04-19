@@ -46,6 +46,7 @@ namespace GoCardlessSdk.Tests.Api
             new ApiClient("asdf").PostBill(44, "AJKH638A99", "some name", "some description");
             Fiddler.FiddlerApplication.BeforeRequest -= inspect;
             var expected = JObject.Parse("{bill: { amount: '44', pre_authorization_id: 'AJKH638A99', name: 'some name', description: 'some description' }}");
+
             Assert.AreEqual(expected.ToString(), JObject.Parse(body).ToString());
         }
 
