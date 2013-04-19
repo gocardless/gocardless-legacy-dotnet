@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>GoCardless</id>
-    <version>1.1.8</version>
+    <version>$version$</version>
     <title>GoCardless Client Libraries</title>
     <authors>GoCardless Ltd</authors>
     <owners>GoCardless Ltd</owners>
