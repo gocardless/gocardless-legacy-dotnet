@@ -146,7 +146,7 @@ namespace GoCardlessSdk.Api
             var restRequest = GetRestRequest("bills", Method.POST);
             restRequest.AddBody(new {bill = new
             {
-                amount, pre_authorization_id = preAuthorizationId, name, description
+                amount = amount.ToString("0.00##############"), pre_authorization_id = preAuthorizationId, name, description
             }});
             return Execute<BillResponse>(restRequest, HttpStatusCode.Created);
         }
