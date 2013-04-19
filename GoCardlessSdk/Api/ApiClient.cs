@@ -7,6 +7,7 @@ using GoCardlessSdk.Helpers;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp.Serializers;
+using System.Globalization;
 
 namespace GoCardlessSdk.Api
 {
@@ -146,7 +147,7 @@ namespace GoCardlessSdk.Api
             var restRequest = GetRestRequest("bills", Method.POST);
             restRequest.AddBody(new {bill = new
             {
-                amount, pre_authorization_id = preAuthorizationId, name, description
+                amount = amount.ToString(CultureInfo.InvariantCulture), pre_authorization_id = preAuthorizationId, name, description
             }});
             return Execute<BillResponse>(restRequest, HttpStatusCode.Created);
         }
