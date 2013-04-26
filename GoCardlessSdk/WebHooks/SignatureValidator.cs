@@ -56,13 +56,18 @@ namespace GoCardlessSdk.WebHooks
             {
                 result.AddRange(flattenArray(parentKey, (JArray)root));
             }
+            else if (root is JContainer)
+            {
+                result.AddRange(flattenHash(parentKey, (JContainer)root));
+            }
             else
             {
                 foreach (JProperty token in root)
                 {
                     if (token.Value is JValue)
                     {
-                        result.Add(new StringTuple(parentKey + token.Name, (string)token.Value));
+                        string key = parentKey == null ? token.Name : parentKey;
+                        result.Add(new StringTuple(key, (string)token.Value));
                     }
                     else if (token.Value is JArray)
                     {
@@ -71,7 +76,7 @@ namespace GoCardlessSdk.WebHooks
                     }
                     else if (token.Value is JContainer)
                     {
-                        var key = parentKey == null ? token.Name : parentKey + "[" + token.Name + "]";
+                        var key = parentKey == null ? "[" + token.Name + "]" : parentKey + "[" + token.Name + "]";
                         result.AddRange(flattenHash(key, (JContainer)token.Value));
                     }
                 }
@@ -97,7 +102,7 @@ namespace GoCardlessSdk.WebHooks
             var result = new List<StringTuple>();
             foreach (JProperty entry in hash)
             {
-                string key = string.Format("{0}[{1}]", parentKey, entry.Name);
+                string key = parentKey == null ? entry.Name : string.Format("{0}[{1}]", parentKey, entry.Name);
                 result.AddRange(Flatten(key, entry.Value));
             }
 
