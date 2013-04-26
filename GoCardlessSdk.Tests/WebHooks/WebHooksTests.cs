@@ -2,6 +2,8 @@
 using System.IO;
 using GoCardlessSdk.WebHooks;
 using NUnit.Framework;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace GoCardlessSdk.Tests.WebHooks
 {
@@ -13,6 +15,48 @@ namespace GoCardlessSdk.Tests.WebHooks
             var request = File.ReadAllText("./WebHooks/Data/Bill invalid signature.txt");
             GoCardless.AccountDetails.AppSecret = "test_secret";
             Assert.Throws<SignatureException>(() => WebHooksClient.ParseRequest(request));
+        }
+
+        [Test]
+        public void testFlatteningArray()
+        {
+            var tuples = flatten("{ cars: ['BMW', 'Fiat', 'VW'] }");
+            Assert.AreEqual("cars[]", tuples[0].Key);
+            Assert.AreEqual("BMW", tuples[0].Value);
+        }
+
+        [Test]
+        public void testFlatteningNestedDictionary()
+        {
+            var tuples = flatten("{ user: { name: 'Fred', age: 30 } }");
+            Assert.AreEqual("user[name]", tuples[0].Key);
+            Assert.AreEqual("Fred", tuples[0].Value);
+            Assert.AreEqual("user[age]", tuples[1].Key);
+            Assert.AreEqual("30", tuples[1].Value);
+        }
+
+        [Test]
+        public void testCombination()
+        {
+            var tuples = flatten("{ user: { name: 'Fred', cars: ['BMW', 'Fiat'] } }");
+            Assert.AreEqual("user[name]", tuples[0].Key);
+            Assert.AreEqual("Fred", tuples[0].Value);
+            Assert.AreEqual("user[cars][]", tuples[1].Key);
+            Assert.AreEqual("BMW", tuples[1].Value);
+        }
+
+        [Test]
+        public void testEncoding()
+        {
+            var tuple = new StringTuple("user[email]", "fred@example.com");
+            var result = new SignatureValidator().PercentEncode(tuple);
+            Assert.AreEqual("user%5Bemail%5D", result.Key);
+            Assert.AreEqual("fred%40example.com", result.Value);
+        }
+
+        private List<StringTuple> flatten(string json)
+        {
+            return new SignatureValidator().Flatten(null, JToken.Parse(json));
         }
 
         [Test]

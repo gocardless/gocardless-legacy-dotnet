@@ -50,6 +50,7 @@ namespace GoCardlessSdk.Helpers
         /// <returns>the encoded string</returns>
         internal static string PercentEncode(this string s)
         {
+            return s;
             // NOTE: HttpUtility.UrlEncode(s) or HttpUtility.UrlPathEncode(s) don't quite do what we need :(
             const string unreservedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~";
             var encoded = new StringBuilder();
@@ -182,7 +183,8 @@ namespace GoCardlessSdk.Helpers
             // TODO: percent_encoding
 
             // cut off the first &
-            return s.ToString().Substring(1);
+            var val = s.ToString();
+            return val.Substring(1);
         }
 
         /// <summary>

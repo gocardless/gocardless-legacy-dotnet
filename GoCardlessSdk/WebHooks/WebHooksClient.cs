@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using GoCardlessSdk.Helpers;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace GoCardlessSdk.WebHooks
 {
@@ -22,6 +23,7 @@ namespace GoCardlessSdk.WebHooks
 
             var payload = serializer.Deserialize<GoCardlessRequest>(new JsonTextReader(new StringReader(content))).Payload;
 
+            new SignatureValidator().Validate(GoCardless.AccountDetails.AppSecret, JObject.Parse(content));
             // validate the HMAC digest by resigning the received parameters
             var signature = payload.Signature;
             payload.Signature = null;
