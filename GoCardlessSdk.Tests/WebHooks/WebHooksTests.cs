@@ -26,6 +26,14 @@ namespace GoCardlessSdk.Tests.WebHooks
         }
 
         [Test]
+        public void testRootHashElementsAreNotEnclosed()
+        {
+            var tuples = flatten("{foo: 'bar', bar: 'foo'}");
+            Assert.AreEqual("foo", tuples[0].Key);
+            Assert.AreEqual("bar", tuples[1].Key);
+        }
+
+        [Test]
         public void testFlatteningNestedDictionary()
         {
             var tuples = flatten("{ user: { name: 'Fred', age: 30 } }");
@@ -43,6 +51,38 @@ namespace GoCardlessSdk.Tests.WebHooks
             Assert.AreEqual("Fred", tuples[0].Value);
             Assert.AreEqual("user[cars][]", tuples[1].Key);
             Assert.AreEqual("BMW", tuples[1].Value);
+        }
+
+        [Test]
+        public void testFlatteningHashWithinArray()
+        {
+            var tuples = flatten("{ bills: [ {id: 'AKJ398H8KA'} ] }");
+            Assert.AreEqual(1, tuples.Count);
+            Assert.AreEqual("bills[][id]", tuples[0].Key);
+            Assert.AreEqual("AKJ398H8KA", tuples[0].Value);
+        }
+
+        [Test]
+        public void testFlatteningArrayWithinHash()
+        {
+            var tuples = flatten("{ bills: { id: ['AKJ398H8KA'] } }");
+            Assert.AreEqual(1, tuples.Count);
+            Assert.AreEqual("bills[id][]", tuples[0].Key);
+            Assert.AreEqual("AKJ398H8KA", tuples[0].Value);        
+        }
+
+        [Test]
+        public void testDatetimesFormattedToZuluTime()
+        {
+            var tuples = flatten("{ time: '2011-12-01T12:01:23Z'}");
+            Assert.AreEqual("2011-12-01T12:01:23Z", tuples[0].Value);
+        }
+
+        [Test]
+        public void testDecimalFormattingPreserved()
+        {
+            var tuples = flatten("{ amount: '80.0'}");
+            Assert.AreEqual("80.0", tuples[0].Value);
         }
 
         [Test]

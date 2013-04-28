@@ -19,16 +19,15 @@ namespace GoCardlessSdk.WebHooks
             {
                 ContractResolver = new UnderscoreToCamelCasePropertyResolver(),
             };
-			serializer.MissingMemberHandling = MissingMemberHandling.Ignore;
+            serializer.MissingMemberHandling = MissingMemberHandling.Ignore;
 
             var payload = serializer.Deserialize<GoCardlessRequest>(new JsonTextReader(new StringReader(content))).Payload;
 
-            new SignatureValidator().Validate(GoCardless.AccountDetails.AppSecret, JObject.Parse(content));
             // validate the HMAC digest by resigning the received parameters
             var signature = payload.Signature;
             payload.Signature = null;
 
-            if (signature != Utils.GetSignatureForParams(payload.ToHashParams(), GoCardless.AccountDetails.AppSecret))
+            if (signature != new SignatureValidator().GetSignature(GoCardless.AccountDetails.AppSecret, JObject.Parse(content)))
             {
                 throw new SignatureException("Signature was invalid!");
             }

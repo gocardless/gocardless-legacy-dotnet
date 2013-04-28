@@ -6,37 +6,35 @@ using Newtonsoft.Json.Linq;
 using System.Web;
 using GoCardlessSdk.Helpers;
 using System.Security.Cryptography;
+using System.Linq;
 
 namespace GoCardlessSdk.WebHooks
 {
     class SignatureValidator
     {
 
-        public void Validate(string key, JObject content)
+        public string GetSignature(string key, JObject content)
         {
             var payload = content["payload"];
+            
             var tuples = Flatten(null, payload);
             tuples.Sort();
+            
 
             StringBuilder result = new StringBuilder();
             var values = new List<string>();
             foreach (var tuple in tuples)
             {
-                var encoded = tuple;
-                //var encoded = PercentEncode(tuple);
+                var encoded = PercentEncode(tuple);
                 values.Add(string.Format("{0}={1}", encoded.Key, encoded.Value));
             }
-
+            
             string digest = String.Join("&", values.ToArray());
 
             Byte[] keyBytes = Encoding.UTF8.GetBytes(key);
             Byte[] paramsBytes = Encoding.UTF8.GetBytes(digest);
             Byte[] hashedBytes = new HMACSHA256(keyBytes).ComputeHash(paramsBytes);
-            string sig = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-
-            var signature = payload["signature"];
-            Console.WriteLine(sig);
-            Console.WriteLine(signature);
+            return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
         }
 
         public StringTuple PercentEncode(StringTuple tuple)
@@ -44,68 +42,51 @@ namespace GoCardlessSdk.WebHooks
             return new StringTuple(Utils.PercentEncode(tuple.Key), Utils.PercentEncode(tuple.Value));
         }
 
-        public List<StringTuple> Flatten(string parentKey, JToken root)
+        public List<StringTuple> Flatten(string keyFormatString, JToken token)
         {
+            keyFormatString = keyFormatString == null ? "" : keyFormatString;
             List<StringTuple> result = new List<StringTuple>();
 
-            if (root is JValue)
+            if (token is JProperty)
             {
-                result.Add(new StringTuple(parentKey, root.ToString()));
+                JProperty property = token as JProperty;
+                keyFormatString = string.Format(keyFormatString, property.Name);
             }
-            else if (root is JArray)
+            else if (token is JArray)
             {
-                result.AddRange(flattenArray(parentKey, (JArray)root));
+                keyFormatString += "[]";
             }
-            else if (root is JContainer)
+            else if (token is JContainer)
             {
-                result.AddRange(flattenHash(parentKey, (JContainer)root));
+                keyFormatString += keyFormatString == string.Empty ? "{0}" : "[{0}]";
             }
             else
             {
-                foreach (JProperty token in root)
+                JValue value = token as JValue;
+
+                // TODO - we should remove the signature before calling this method,
+                // But LINQ to JSON structures appear immutable.
+                if (keyFormatString != "signature")
                 {
-                    if (token.Value is JValue)
+                    string val;
+                    // TODO - it would be nice if we could just turn off JSON.net's type inference and work with strings.
+                    if (value.Type == JTokenType.Date)
                     {
-                        string key = parentKey == null ? token.Name : parentKey;
-                        result.Add(new StringTuple(key, (string)token.Value));
+                        val = value.ToString("yyyy-MM-ddTHH:mm:ssZ");
                     }
-                    else if (token.Value is JArray)
+                    else
                     {
-                        var key = parentKey == null ? token.Name : parentKey + "[]" + token.Name;
-                        result.AddRange(flattenArray(key, (JArray)token.Value));
+                        val = value.ToString();
                     }
-                    else if (token.Value is JContainer)
-                    {
-                        var key = parentKey == null ? "[" + token.Name + "]" : parentKey + "[" + token.Name + "]";
-                        result.AddRange(flattenHash(key, (JContainer)token.Value));
-                    }
+                    result.Add(new StringTuple(keyFormatString, val));
                 }
             }
 
-            return result;
-        }
-
-        private List<StringTuple> flattenArray(string key, JArray array)
-        {
-            key += "[]";
-            var result = new List<StringTuple>();
-            foreach (var token in array)
+            foreach (var childToken in token)
             {
-                result.AddRange(Flatten(key, token));
+                result.AddRange(Flatten(keyFormatString, childToken));
             }
-
-            return result;
-        }
-
-        private List<StringTuple> flattenHash(string parentKey, JContainer hash)
-        {
-            var result = new List<StringTuple>();
-            foreach (JProperty entry in hash)
-            {
-                string key = parentKey == null ? entry.Name : string.Format("{0}[{1}]", parentKey, entry.Name);
-                result.AddRange(Flatten(key, entry.Value));
-            }
-
+            
             return result;
         }
     }
