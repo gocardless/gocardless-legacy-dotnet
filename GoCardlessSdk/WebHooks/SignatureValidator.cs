@@ -16,10 +16,10 @@ namespace GoCardlessSdk.WebHooks
         public string GetSignature(string key, JObject content)
         {
             var payload = content["payload"];
-            
+
             var tuples = Flatten(null, payload);
             tuples.Sort();
-            
+
 
             StringBuilder result = new StringBuilder();
             var values = new List<string>();
@@ -28,7 +28,7 @@ namespace GoCardlessSdk.WebHooks
                 var encoded = PercentEncode(tuple);
                 values.Add(string.Format("{0}={1}", encoded.Key, encoded.Value));
             }
-            
+
             string digest = String.Join("&", values.ToArray());
 
             Byte[] keyBytes = Encoding.UTF8.GetBytes(key);
@@ -47,46 +47,45 @@ namespace GoCardlessSdk.WebHooks
             keyFormatString = keyFormatString == null ? "" : keyFormatString;
             List<StringTuple> result = new List<StringTuple>();
 
-            if (token is JProperty)
+            switch (token.Type)
             {
-                JProperty property = token as JProperty;
-                keyFormatString = string.Format(keyFormatString, property.Name);
-            }
-            else if (token is JArray)
-            {
-                keyFormatString += "[]";
-            }
-            else if (token is JContainer)
-            {
-                keyFormatString += keyFormatString == string.Empty ? "{0}" : "[{0}]";
-            }
-            else
-            {
-                JValue value = token as JValue;
+                case JTokenType.Property:
+                    JProperty property = token as JProperty;
+                    keyFormatString = string.Format(keyFormatString, property.Name);
+                break;
+                case JTokenType.Array:
+                    keyFormatString += "[]";
+                break;
+                case JTokenType.Object:
+                    keyFormatString += keyFormatString == string.Empty ? "{0}" : "[{0}]";
+                break;
+                default:
+                    JValue value = token as JValue;
 
-                // TODO - we should remove the signature before calling this method,
-                // But LINQ to JSON structures appear immutable.
-                if (keyFormatString != "signature")
-                {
-                    string val;
-                    // TODO - it would be nice if we could just turn off JSON.net's type inference and work with strings.
-                    if (value.Type == JTokenType.Date)
+                    // TODO - we should remove the signature before calling this method,
+                    // But LINQ to JSON structures appear immutable.
+                    if (keyFormatString != "signature")
                     {
-                        val = value.ToString("yyyy-MM-ddTHH:mm:ssZ");
+                        string val;
+                        // TODO - it would be nice if we could just turn off JSON.net's type conversion and work with strings.
+                        if (value.Type == JTokenType.Date)
+                        {
+                            val = value.ToString("yyyy-MM-ddTHH:mm:ssZ");
+                        }
+                        else
+                        {
+                            val = value.ToString();
+                        }
+                        result.Add(new StringTuple(keyFormatString, val));
                     }
-                    else
-                    {
-                        val = value.ToString();
-                    }
-                    result.Add(new StringTuple(keyFormatString, val));
-                }
+                break;
             }
 
             foreach (var childToken in token)
             {
                 result.AddRange(Flatten(keyFormatString, childToken));
             }
-            
+
             return result;
         }
     }
