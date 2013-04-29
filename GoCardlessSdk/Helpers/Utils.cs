@@ -182,8 +182,7 @@ namespace GoCardlessSdk.Helpers
             // TODO: percent_encoding
 
             // cut off the first &
-            var val = s.ToString();
-            return val.Substring(1);
+            return s.ToString().Substring(1);
         }
 
         /// <summary>
