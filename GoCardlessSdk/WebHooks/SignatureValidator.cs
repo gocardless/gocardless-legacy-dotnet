@@ -6,7 +6,6 @@ using Newtonsoft.Json.Linq;
 using System.Web;
 using GoCardlessSdk.Helpers;
 using System.Security.Cryptography;
-using System.Linq;
 
 namespace GoCardlessSdk.WebHooks
 {
