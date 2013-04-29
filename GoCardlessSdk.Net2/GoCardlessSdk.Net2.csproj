@@ -114,6 +114,9 @@
     <Compile Include="..\GoCardlessSdk\WebHooks\WebHooksClient.cs">
       <Link>WebHooks\WebHooksClient.cs</Link>
     </Compile>
+    <Compile Include="..\GoCardlessSdk\WebHooks\SignatureValidator.cs">
+      <Link>WebHooks\SignatureValidator.cs</Link>
+    </Compile>
     <Compile Include="Helpers\LinqBridge-1.2.cs" />
     <Compile Include="Helpers\NewtonsoftJsonDeserializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
