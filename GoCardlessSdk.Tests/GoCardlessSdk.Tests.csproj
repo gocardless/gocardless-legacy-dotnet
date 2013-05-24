@@ -68,6 +68,7 @@
     <Compile Include="Api\GetMerchantSubscriptionsTests.cs" />
     <Compile Include="Api\GetMerchantTests.cs" />
     <Compile Include="Api\GetMerchantUsersTests.cs" />
+    <Compile Include="Api\GetPayoutTests.cs" />
     <Compile Include="Api\GetPreAuthorizationTests.cs" />
     <Compile Include="Api\GetSubscriptionTests.cs" />
     <Compile Include="Api\PostBillTests.cs" />
@@ -92,6 +93,9 @@
     <Content Include="Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_bills.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_payouts.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_pre_authorizations.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -99,6 +103,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Api\Data\GET gocardless.com_api_v1_merchants_WOQRUJU9OH2HH1_users.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Api\Data\GET gocardless.com_api_v1_payouts_0BKR1AZNJF.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Api\Data\GET gocardless.com_api_v1_pre_authorizations_1234JKH8KLJ.txt">

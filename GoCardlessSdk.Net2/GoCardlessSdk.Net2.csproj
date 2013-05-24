@@ -66,6 +66,9 @@
     <Compile Include="..\GoCardlessSdk\Api\UserResponse.cs">
       <Link>Api\UserResponse.cs</Link>
     </Compile>
+    <Compile Include="..\GoCardlessSdk\Api\PayoutResponse.cs">
+      <Link>Api\PayoutResponse.cs</Link>
+    </Compile>
     <Compile Include="..\GoCardlessSdk\Connect\BillRequest.cs">
       <Link>Connect\BillRequest.cs</Link>
     </Compile>

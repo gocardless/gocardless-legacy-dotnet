@@ -40,6 +40,12 @@ namespace GoCardlessSdk.Api
             return Execute<BillResponse>(restRequest);
         }
 
+        public PayoutResponse GetPayout(string id)
+        {
+            var restRequest = GetRestRequest("payouts/" + id, Method.GET);
+            return Execute<PayoutResponse>(restRequest);
+        }
+
         public IEnumerable<BillResponse> GetMerchantBills(string merchantId, string sourceId = null, string subscriptionId = null, string preAuthorizationId = null, string userId = null, DateTimeOffset? before = null, DateTimeOffset? after = null, bool? paid = null)
         {
             var options = new { source_id = sourceId, subscription_id = subscriptionId, pre_authorization_id = preAuthorizationId, user_id = userId, before, after, paid };
@@ -64,6 +70,13 @@ namespace GoCardlessSdk.Api
             var restRequest = GetRestRequest("merchants/" + merchantId + "/users", Method.GET);
             return Execute<List<UserResponse>>(restRequest).AsReadOnly();
         }
+
+        public IEnumerable<PayoutResponse> GetMerchantPayouts(string merchantId, string userId = null)
+        {
+            var restRequest = GetRestRequest("merchants/" + merchantId + "/payouts", Method.GET);
+            return Execute<List<PayoutResponse>>(restRequest).AsReadOnly();
+        }
+
         public SubscriptionResponse GetSubscription(string id)
         {
             var restRequest = GetRestRequest("subscriptions/" + id, Method.GET);

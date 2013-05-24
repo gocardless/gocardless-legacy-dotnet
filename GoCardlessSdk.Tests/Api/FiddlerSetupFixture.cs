@@ -28,7 +28,14 @@ namespace GoCardlessSdk.Tests.Api
                              : oS.HTTPMethodIs("POST") ? "POST"
                                    : oS.HTTPMethodIs("PUT") ? "PUT" : null;
             oS.utilCreateResponseAndBypassServer();
-            var lines = File.ReadAllLines("./Api/Data/" + method + " " + file + ".txt");
+            var filePath = "./Api/Data/" + method + " " + file + ".txt";
+
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException(filePath);
+            }
+
+            var lines = File.ReadAllLines(filePath);
             oS.oResponse.headers = Parser.ParseResponse(lines.First());
             oS.oResponse.headers.Add("Content-Type", "application/json");
 

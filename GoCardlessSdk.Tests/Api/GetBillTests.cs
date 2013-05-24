@@ -30,6 +30,5 @@ namespace GoCardlessSdk.Tests.Api
             DeepAssertHelper.AssertDeepEquality(expected, new ApiClient("asdf").GetBill("VZUG2SC3PRT5EM"));
         }
 
-
     }
 }
