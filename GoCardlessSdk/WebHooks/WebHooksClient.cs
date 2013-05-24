@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using GoCardlessSdk.Helpers;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace GoCardlessSdk.WebHooks
 {
@@ -18,7 +19,7 @@ namespace GoCardlessSdk.WebHooks
             {
                 ContractResolver = new UnderscoreToCamelCasePropertyResolver(),
             };
-			serializer.MissingMemberHandling = MissingMemberHandling.Ignore;
+            serializer.MissingMemberHandling = MissingMemberHandling.Ignore;
 
             var payload = serializer.Deserialize<GoCardlessRequest>(new JsonTextReader(new StringReader(content))).Payload;
 
@@ -26,7 +27,7 @@ namespace GoCardlessSdk.WebHooks
             var signature = payload.Signature;
             payload.Signature = null;
 
-            if (signature != Utils.GetSignatureForParams(payload.ToHashParams(), GoCardless.AccountDetails.AppSecret))
+            if (signature != new SignatureValidator().GetSignature(GoCardless.AccountDetails.AppSecret, JObject.Parse(content)))
             {
                 throw new SignatureException("Signature was invalid!");
             }
