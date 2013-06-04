@@ -71,7 +71,7 @@ namespace GoCardlessSdk.Api
             return Execute<List<UserResponse>>(restRequest).AsReadOnly();
         }
 
-        public IEnumerable<PayoutResponse> GetMerchantPayouts(string merchantId, string userId = null)
+        public IEnumerable<PayoutResponse> GetMerchantPayouts(string merchantId)
         {
             var restRequest = GetRestRequest("merchants/" + merchantId + "/payouts", Method.GET);
             return Execute<List<PayoutResponse>>(restRequest).AsReadOnly();

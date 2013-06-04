@@ -136,27 +136,7 @@ namespace GoCardlessSdk.Connect
         /// <returns>the confirmed resource object</returns>
         public ConfirmResource ConfirmResource(NameValueCollection requestContent)
         {
-            var resource = new ConfirmResource
-                               {
-                                   ResourceId = requestContent["resource_id"],
-                                   ResourceType = requestContent["resource_type"],
-                                   ResourceUri = requestContent["resource_uri"],
-                                   Signature = requestContent["signature"],
-                                   State = requestContent["state"],
-                               };
-
-            if (resource.ResourceId == null) throw new ArgumentNullException("ResourceId");
-            if (resource.ResourceType == null) throw new ArgumentNullException("ResourceType");
-            if (resource.ResourceUri == null) throw new ArgumentNullException("ResourceUri");
-            if (resource.Signature == null) throw new ArgumentNullException("Signature");
-
-            var signature = resource.Signature;
-            resource.Signature = null;
-
-            if (signature != Utils.GetSignatureForParams(resource.ToHashParams(), GoCardless.AccountDetails.AppSecret))
-            {
-                throw new SignatureException("An invalid signature was detected");
-            }
+            var resource = DeserializeAndValidateRequestSignature(requestContent);
 
             var request = new RestRequest("confirm", Method.POST);
             request.RequestFormat = DataFormat.Json;
@@ -182,6 +162,37 @@ namespace GoCardlessSdk.Connect
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 throw new ApiException("Unexpected response : " + (int)response.StatusCode + " " + response.StatusCode);
+            }
+
+            return resource;
+        }
+
+        /// <summary>
+        /// Validate the signature of a specified <c>ConfirmResource</c>.
+        /// This method is visible for testing and should not be called by client applications.
+        /// </summary>
+        internal ConfirmResource DeserializeAndValidateRequestSignature(NameValueCollection requestContent)
+        {
+            var resource = new ConfirmResource
+            {
+                ResourceId = requestContent["resource_id"],
+                ResourceType = requestContent["resource_type"],
+                ResourceUri = Uri.UnescapeDataString(requestContent["resource_uri"]),
+                Signature = requestContent["signature"],
+                State = requestContent["state"],
+            };
+
+            if (resource.ResourceId == null) throw new ArgumentNullException("ResourceId");
+            if (resource.ResourceType == null) throw new ArgumentNullException("ResourceType");
+            if (resource.ResourceUri == null) throw new ArgumentNullException("ResourceUri");
+            if (resource.Signature == null) throw new ArgumentNullException("Signature");
+
+            var signature = resource.Signature;
+            resource.Signature = null;
+
+            if (signature != Utils.GetSignatureForParams(resource.ToHashParams(), GoCardless.AccountDetails.AppSecret))
+            {
+                throw new SignatureException("An invalid signature was detected");
             }
 
             return resource;
