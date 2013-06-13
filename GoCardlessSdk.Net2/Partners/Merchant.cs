@@ -1,9 +1,9 @@
-﻿namespace GoCardlessSdk.Connect
+﻿namespace GoCardlessSdk.Partners
 {
     /// <summary>
-    /// GoCardless - UserRequest
+    /// GoCardless - Merchant
     /// </summary>
-    public class UserRequest
+    public class Merchant
     {
         /// <summary>
         /// Gets or sets the name.
@@ -12,30 +12,6 @@
         /// The name.
         /// </value>
         public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the first name.
-        /// </summary>
-        /// <value>
-        /// The first name.
-        /// </value>
-        public string FirstName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the last name.
-        /// </summary>
-        /// <value>
-        /// The last name.
-        /// </value>
-        public string LastName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the email.
-        /// </summary>
-        /// <value>
-        /// The email.
-        /// </value>
-        public string Email { get; set; }
 
         /// <summary>
         /// Gets or sets the billing address1.
@@ -76,5 +52,13 @@
         /// The billing postcode.
         /// </value>
         public string BillingPostcode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user.
+        /// </summary>
+        /// <value>
+        /// The user.
+        /// </value>
+        public User User { get; set; }
     }
 }

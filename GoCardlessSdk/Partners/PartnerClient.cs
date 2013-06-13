@@ -1,13 +1,22 @@
 using System.Net;
 using GoCardlessSdk.Helpers;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
 namespace GoCardlessSdk.Partners
 {
+    /// <summary>
+    /// GoCardless - PartnerClient
+    /// </summary>
     public class PartnerClient
     {
+        /// <summary>
+        /// News the merchant URL.
+        /// </summary>
+        /// <param name="redirectUri">The redirect URI.</param>
+        /// <param name="merchant">The merchant.</param>
+        /// <param name="state">The state.</param>
+        /// <returns>New Merchant URL</returns>
         public string NewMerchantUrl(string redirectUri, Merchant merchant = null, string state = null)
         {
             var request = new ManageMerchantRequest
@@ -23,14 +32,20 @@ namespace GoCardlessSdk.Partners
             return GoCardless.BaseUrl + "/oauth/authorize?" + request.ToQueryString();
         }
 
+        /// <summary>
+        /// Parses the create merchant response.
+        /// </summary>
+        /// <param name="redirectUri">The redirect URI.</param>
+        /// <param name="code">The code.</param>
+        /// <returns>MerchantAccessTokenResponse object</returns>
         public MerchantAccessTokenResponse ParseCreateMerchantResponse(string redirectUri, string code)
         {
             var hash = new Utils.HashParams
                            {
-                               {"client_id", GoCardless.AccountDetails.AppId},
-                               {"redirect_uri", redirectUri},
-                               {"code", code},
-                               {"grant_type", "authorization_code"},
+                               { "client_id", GoCardless.AccountDetails.AppId },
+                               { "redirect_uri", redirectUri },
+                               { "code", code },
+                               { "grant_type", "authorization_code" },
                            };
             var tokenUrl = "oauth/access_token?" + hash.ToQueryString();
 

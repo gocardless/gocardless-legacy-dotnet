@@ -5,13 +5,16 @@ using Newtonsoft.Json.Linq;
 
 namespace GoCardlessSdk.WebHooks
 {
+    /// <summary>
+    /// GoCardless - WebHooksClient
+    /// </summary>
     public class WebHooksClient
     {
         /// <summary>
         /// Parse request from GoCardless into objects, and checks the signature of the request.
         /// </summary>
-        /// <param name="content"></param>
-        /// <returns></returns>
+        /// <param name="content">The content.</param>
+        /// <returns>Payload instance</returns>
         public static Payload ParseRequest(string content)
         {
             // deserialize request content. (ensure content type is set to JSON in GoCardless setup)

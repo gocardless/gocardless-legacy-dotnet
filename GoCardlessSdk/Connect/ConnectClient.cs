@@ -8,68 +8,11 @@ using RestSharp;
 
 namespace GoCardlessSdk.Connect
 {
+    /// <summary>
+    /// GoCardless - ConnectClient
+    /// </summary>
     public class ConnectClient
     {
-        /// <summary>
-        /// Add a signature to a Hash of parameters. The signature will be generated
-        /// from the app secret and the provided parameters, and should be used
-        /// whenever signed data needs to be sent to GoCardless (e.g. when creating
-        /// a new subscription). The signature will be added to the hash under the
-        /// key signature.
-        /// </summary>
-        /// <param name="params">the parameters to sign</param>
-        /// <returns>the parameters with the new signature key</returns>
-        private static Utils.HashParams SignParams(Utils.HashParams @params)
-        {
-            var signature = Utils.GetSignatureForParams(@params, GoCardless.AccountDetails.AppSecret);
-            @params.Add("signature", signature);
-            return @params;
-        }
-
-
-        /// <summary>
-        /// Generate the URL for creating a limit, including the
-        /// provided params, nonce, timestamp and signature
-        /// </summary>
-        /// <param name="type">the limit type (subscription, etc)</param>
-        /// <param name="requestResource">the request values</param>
-        /// <param name="redirectUri">optional override URI on success</param>
-        /// <param name="cancelUri">optional override URI on cancel</param>
-        /// <param name="state">optional state, gets passed back with the successful payload</param>
-        /// <returns>the generated URL</returns>
-        private static string GenerateNewLimitUrl(string type, object requestResource,
-            string redirectUri = null, string cancelUri = null, string state = null)
-        {
-            var hash = new Utils.HashParams
-                           {
-                               {"client_id", GoCardless.AccountDetails.AppId},
-                               {"nonce", GoCardless.GenerateNonce()},
-                               {"timestamp", GoCardless.GetUtcNow().IsoFormatTime()},
-                           };
-
-            hash = requestResource.ToHashParams(hash, type);
-
-
-            if (redirectUri != null)
-            {
-                hash.Add("redirect_uri", redirectUri);
-            }
-            if (cancelUri != null)
-            {
-                hash.Add("cancel_uri", cancelUri);
-            }
-            if (state != null)
-            {
-                hash.Add("state", state);
-            }
-
-            hash = SignParams(hash);
-
-            var url = GoCardless.BaseUrl + "/connect/" + type + "s/new?" + hash.ToQueryString();
-            return url;
-        }
-
-
         /// <summary>
         /// Generate the URL for creating a new subscription.
         /// </summary>
@@ -84,8 +27,7 @@ namespace GoCardlessSdk.Connect
         /// <param name="cancelUri">optional override URI on cancel</param>
         /// <param name="state">optional state, gets passed back with the successful payload</param>
         /// <returns>the generated URL</returns>
-        public string NewSubscriptionUrl(SubscriptionRequest requestResource,
-            string redirectUri = null, string cancelUri = null, string state = null)
+        public string NewSubscriptionUrl(SubscriptionRequest requestResource, string redirectUri = null, string cancelUri = null, string state = null)
         {
             return GenerateNewLimitUrl("subscription", requestResource, redirectUri, cancelUri, state);
         }
@@ -102,8 +44,7 @@ namespace GoCardlessSdk.Connect
         /// <param name="cancelUri">optional override URI on cancel</param>
         /// <param name="state">optional state, gets passed back with the successful payload</param>
         /// <returns>the generated URL</returns>
-        public string NewPreAuthorizationUrl(PreAuthorizationRequest requestResource,
-            string redirectUri = null, string cancelUri = null, string state = null)
+        public string NewPreAuthorizationUrl(PreAuthorizationRequest requestResource, string redirectUri = null, string cancelUri = null, string state = null)
         {
             return GenerateNewLimitUrl("pre_authorization", requestResource, redirectUri, cancelUri, state);
         }
@@ -120,8 +61,7 @@ namespace GoCardlessSdk.Connect
         /// <param name="cancelUri">optional override URI on cancel</param>
         /// <param name="state">optional state, gets passed back with the successful payload</param>
         /// <returns>the generated URL</returns>
-        public string NewBillUrl(BillRequest requestResource,
-            string redirectUri = null, string cancelUri = null, string state = null)
+        public string NewBillUrl(BillRequest requestResource, string redirectUri = null, string cancelUri = null, string state = null)
         {
             return GenerateNewLimitUrl("bill", requestResource, redirectUri, cancelUri, state);
         }
@@ -136,7 +76,42 @@ namespace GoCardlessSdk.Connect
         /// <returns>the confirmed resource object</returns>
         public ConfirmResource ConfirmResource(NameValueCollection requestContent)
         {
-            var resource = DeserializeAndValidateRequestSignature(requestContent);
+            var resource = new ConfirmResource
+                               {
+                                   ResourceId = requestContent["resource_id"],
+                                   ResourceType = requestContent["resource_type"],
+                                   ResourceUri = requestContent["resource_uri"],
+                                   Signature = requestContent["signature"],
+                                   State = requestContent["state"],
+                               };
+
+            if (resource.ResourceId == null)
+            {
+                throw new ArgumentNullException("ResourceId");
+            }
+
+            if (resource.ResourceType == null)
+            {
+                throw new ArgumentNullException("ResourceType");
+            }
+
+            if (resource.ResourceUri == null)
+            {
+                throw new ArgumentNullException("ResourceUri");
+            }
+
+            if (resource.Signature == null)
+            {
+                throw new ArgumentNullException("Signature");
+            }
+
+            var signature = resource.Signature;
+            resource.Signature = null;
+
+            if (signature != Utils.GetSignatureForParams(resource.ToHashParams(), GoCardless.AccountDetails.AppSecret))
+            {
+                throw new SignatureException("An invalid signature was detected");
+            }
 
             var request = new RestRequest("confirm", Method.POST);
             request.RequestFormat = DataFormat.Json;
@@ -168,34 +143,61 @@ namespace GoCardlessSdk.Connect
         }
 
         /// <summary>
-        /// Validate the signature of a specified <c>ConfirmResource</c>.
-        /// This method is visible for testing and should not be called by client applications.
+        /// Add a signature to a Hash of parameters. The signature will be generated
+        /// from the app secret and the provided parameters, and should be used
+        /// whenever signed data needs to be sent to GoCardless (e.g. when creating
+        /// a new subscription). The signature will be added to the hash under the
+        /// key signature.
         /// </summary>
-        internal ConfirmResource DeserializeAndValidateRequestSignature(NameValueCollection requestContent)
+        /// <param name="params">the parameters to sign</param>
+        /// <returns>the parameters with the new signature key</returns>
+        private static Utils.HashParams SignParams(Utils.HashParams @params)
         {
-            var resource = new ConfirmResource
+            var signature = Utils.GetSignatureForParams(@params, GoCardless.AccountDetails.AppSecret);
+            @params.Add("signature", signature);
+            return @params;
+        }
+
+        /// <summary>
+        /// Generate the URL for creating a limit, including the
+        /// provided params, nonce, timestamp and signature
+        /// </summary>
+        /// <param name="type">the limit type (subscription, etc)</param>
+        /// <param name="requestResource">the request values</param>
+        /// <param name="redirectUri">optional override URI on success</param>
+        /// <param name="cancelUri">optional override URI on cancel</param>
+        /// <param name="state">optional state, gets passed back with the successful payload</param>
+        /// <returns>the generated URL</returns>
+        private static string GenerateNewLimitUrl(string type, object requestResource, string redirectUri = null, string cancelUri = null, string state = null)
+        {
+            var hash = new Utils.HashParams
+                           {
+                               { "client_id", GoCardless.AccountDetails.AppId },
+                               { "nonce", GoCardless.GenerateNonce() },
+                               { "timestamp", GoCardless.GetUtcNow().IsoFormatTime() },
+                           };
+
+            hash = requestResource.ToHashParams(hash, type);
+
+            if (redirectUri != null)
             {
-                ResourceId = requestContent["resource_id"],
-                ResourceType = requestContent["resource_type"],
-                ResourceUri = Uri.UnescapeDataString(requestContent["resource_uri"]),
-                Signature = requestContent["signature"],
-                State = requestContent["state"],
-            };
-
-            if (resource.ResourceId == null) throw new ArgumentNullException("ResourceId");
-            if (resource.ResourceType == null) throw new ArgumentNullException("ResourceType");
-            if (resource.ResourceUri == null) throw new ArgumentNullException("ResourceUri");
-            if (resource.Signature == null) throw new ArgumentNullException("Signature");
-
-            var signature = resource.Signature;
-            resource.Signature = null;
-
-            if (signature != Utils.GetSignatureForParams(resource.ToHashParams(), GoCardless.AccountDetails.AppSecret))
-            {
-                throw new SignatureException("An invalid signature was detected");
+                hash.Add("redirect_uri", redirectUri);
             }
 
-            return resource;
+            if (cancelUri != null)
+            {
+                hash.Add("cancel_uri", cancelUri);
+            }
+
+            if (state != null)
+            {
+                hash.Add("state", state);
+            }
+
+            hash = SignParams(hash);
+
+            var url = GoCardless.BaseUrl + "/connect/" + type + "s/new?" + hash.ToQueryString();
+            return url;
         }
     }
 }
