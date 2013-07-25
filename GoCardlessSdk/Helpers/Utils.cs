@@ -107,14 +107,14 @@ namespace GoCardlessSdk.Helpers
             this object queryStringable, HashParams hash = null, string prefix = null)
         {
             Func<object, bool> isOfSimpleType = o =>
-                                                    {
-                                                        var type = o.GetType();
-                                                        return type.IsPrimitive
-                                                               || type == typeof (string)
-                                                               || type == typeof (decimal)
-                                                               || type == typeof (DateTimeOffset)
-                                                            ;
-                                                    };
+            {
+                var type = o.GetType();
+                return type.IsPrimitive
+                       || type == typeof(string)
+                       || type == typeof(decimal)
+                       || type == typeof(DateTimeOffset)
+                    ;
+            };
 
             PropertyInfo[] propertyInfos = queryStringable.GetType().GetProperties(
                 BindingFlags.Public | BindingFlags.Instance);
@@ -138,17 +138,31 @@ namespace GoCardlessSdk.Helpers
                         {
                             if (isOfSimpleType(innerValue))
                             {
-                                hash.Add(propertyName + "[]", innerValue);
+                                if (innerValue is Boolean)
+                                {
+                                    hash.Add(propertyName + "[]", Convert.ToInt16(innerValue));
+                                }
+                                else
+                                {
+                                    hash.Add(propertyName + "[]", innerValue);
+                                }
                             }
                             else
                             {
                                 innerValue.ToHashParams(hash, propertyName + "[]");
-                            } 
+                            }
                         }
                     }
                     else if (isOfSimpleType(value))
                     {
-                        hash.Add(propertyName, value);
+                        if (value is Boolean)
+                        {
+                            hash.Add(propertyName, Convert.ToInt16(value));
+                        }
+                        else
+                        {
+                            hash.Add(propertyName, value);
+                        }
                     }
                     else
                     {
