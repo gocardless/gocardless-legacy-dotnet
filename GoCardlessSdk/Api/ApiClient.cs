@@ -159,14 +159,21 @@ namespace GoCardlessSdk.Api
             return response.Data;
         }
 
-        public BillResponse PostBill(decimal amount, string preAuthorizationId, string name = null, string description = null)
+        public BillResponse PostBill(decimal amount, string preAuthorizationId, string name = null, string description = null, DateTime? chargeCustomerAt=null)
         {
           
             var restRequest = GetRestRequest("bills", Method.POST);
-            restRequest.AddBody(new {bill = new
+            restRequest.AddBody(new
             {
-                amount = amount.ToString(CultureInfo.InvariantCulture), pre_authorization_id = preAuthorizationId, name, description
-            }});
+                bill = new
+                    {
+                        amount = amount.ToString(CultureInfo.InvariantCulture),
+                        pre_authorization_id = preAuthorizationId,
+                        charge_customer_at = (chargeCustomerAt.HasValue) ? string.Format("{0:yyyy-MM-dd}", chargeCustomerAt) : null,
+                        name,
+                        description
+                    }
+            });
             return Execute<BillResponse>(restRequest, HttpStatusCode.Created);
         }
     }
