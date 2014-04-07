@@ -114,7 +114,9 @@
       <Name>GoCardlessSdk.Net2</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="..\GoCardlessSdk.Tests\Api\Data\GET gocardless.com_api_v1_bills_213.txt">
       <Link>Api\Data\GET gocardless.com_api_v1_bills_213.txt</Link>

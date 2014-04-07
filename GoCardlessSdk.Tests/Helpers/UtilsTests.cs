@@ -86,7 +86,7 @@ namespace GoCardlessSdk.Tests.Helpers
         [Test]
         public void ToQueryStringTests()
         {
-            Assert.AreEqual("name=Bob", new UserRequest {Name = "Bob"}.ToQueryString());
+            Assert.AreEqual("company_name_toggle=0&name=Bob", new UserRequest {Name = "Bob"}.ToQueryString());
 
             var subscription = new SubscriptionRequest("merchant123", 2m, 1, "month")
                                    {
@@ -98,7 +98,7 @@ namespace GoCardlessSdk.Tests.Helpers
                                                   }
                                    };
             Assert.AreEqual(
-                "amount=2.00&interval_length=1&interval_unit=month&merchant_id=merchant123&start_at=2011-01-01T12%3A00%3A00Z&user%5Bfirst_name%5D=John&user%5Bname%5D=John%20Smith",
+                "amount=2.00&interval_length=1&interval_unit=month&merchant_id=merchant123&start_at=2011-01-01T12%3A00%3A00Z&user%5Bcompany_name_toggle%5D=0&user%5Bfirst_name%5D=John&user%5Bname%5D=John%20Smith",
                 subscription.ToQueryString());
         }
 
