@@ -103,6 +103,11 @@ namespace GoCardlessSdk.Api
             var restRequest = GetRestRequest(string.Format("bills/{0}/retry", id), Method.POST);
             return Execute<BillResponse>(restRequest, HttpStatusCode.Created);
         }
+        public BillResponse RefundBill(string id)
+        {
+            var restRequest = GetRestRequest(string.Format("bills/{0}/refund", id), Method.POST);
+            return Execute<BillResponse>(restRequest, HttpStatusCode.Created);
+        }
 
         private static RestRequest GetRestRequest(string resource, Method method, object options = null)
         {
