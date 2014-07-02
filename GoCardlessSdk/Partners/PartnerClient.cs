@@ -54,7 +54,8 @@ namespace GoCardlessSdk.Partners
             {
                 throw new ApiException("Invalid response getting access token from " + tokenUrl)
                 {
-                    Content = JObject.Parse(response.Content)
+                    Content = JObject.Parse(response.Content),
+                    StatusCode = response.StatusCode
                 };
             }
         }
