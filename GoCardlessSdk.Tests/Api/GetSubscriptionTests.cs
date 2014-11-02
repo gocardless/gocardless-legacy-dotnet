@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using GoCardlessSdk.Api;
 using NUnit.Framework;
 
@@ -9,17 +10,22 @@ namespace GoCardlessSdk.Tests.Api
         [Test]
         public void CanFetchAndDeserializeCorrectly()
         {
-            var expected = new SubscriptionResponse
+			DateTimeOffset dtoCreatedAt = DateTimeOffset.ParseExact (
+				                     "2011-09-12T13:51:30Z", "yyyy-MM-ddTHH:mm:ssZ",
+				                     CultureInfo.InvariantCulture);
+//			DateTimeOffset dto2 = DateTime
+//			CreatedAt = DateTime.Parse("2011-09-12T13:51:30Z"),
+           var expected = new SubscriptionResponse
                 {
                     Amount = 44.0m,
                     IntervalLength = 1,
                     IntervalUnit = "month",
-                    CreatedAt = DateTimeOffset.Parse("2011-09-12T13:51:30Z"),
+				CreatedAt = dtoCreatedAt,
                     Currency = "GBP",
                     Name = "London Gym Membership",
                     Description = "Entitles you to use all of the gyms around London",
                     ExpiresAt = null,
-                    NextIntervalStart = DateTimeOffset.Parse("2011-10-12T13:51:30Z"),
+                    NextIntervalStart = DateTime.Parse("2011-10-12T13:51:30Z"),
                     Id = "AJKH638A99",
                     MerchantId = "WOQRUJU9OH2HH1",
                     Status = "active",

@@ -12,9 +12,9 @@ namespace GoCardlessSdk.Tests.Api
         {
             Amount = 12.37m,
             BankReference = "JOHNSMITH-Z5DRM",
-            CreatedAt = DateTimeOffset.Parse("2013-05-10T16:34:34Z"),
+            CreatedAt = DateTime.Parse("2013-05-10T16:34:34Z"),
             Id = "0BKR1AZNJF",
-            PaidAt = DateTimeOffset.Parse("2013-05-10T17:00:26Z"),
+            PaidAt = DateTime.Parse("2013-05-10T17:00:26Z"),
             TransactionFees = 0.13m
         };
 

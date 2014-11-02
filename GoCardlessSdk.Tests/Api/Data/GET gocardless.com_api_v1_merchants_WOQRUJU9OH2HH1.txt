@@ -11,7 +11,7 @@
    "uri": "https://gocardless.com/api/v1/merchants/WOQRUJU9OH2HH1",
    "balance": "12.00",
    "pending_balance": "0.00",
-   "next_payout_date": "2011-11-25T17: 07: 09Z",
+   "next_payout_date": "2011-11-25T17:07:09Z",
    "next_payout_amount": "12.00",
    "sub_resource_uris": {
       "users": "https://gocardless.com/api/v1/merchants/WOQRUJU9OH2HH1/users",

@@ -14,7 +14,7 @@ namespace GoCardlessSdk.Tests.Api
                 Amount = 44.0m,
                 IntervalLength = 1,
                 IntervalUnit = "month",
-                CreatedAt = DateTimeOffset.Parse("2011-09-12T13:51:30Z"),
+				CreatedAt = DateTime.Parse("2011-09-12T13:51:30Z"),
                 Currency = "GBP",
                 Name = "London Gym Membership",
                 Description = "Entitles you to use all of the gyms around London",
