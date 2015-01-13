@@ -18,6 +18,7 @@ namespace GoCardlessSdk.WebHooks
         public class Bill
         {
             public string Id { get; set; }
+            public string PayoutId { get; set; }
             public string Status { get; set; }
             public string SourceType { get; set; }
             public string SourceId { get; set; }
