@@ -47,3 +47,4 @@ GoCardlessSdk.Tests/test-results
 GoCardlessSdk.userprefs
 
 *.nupkg 
+*.ncrunch*
