@@ -19,6 +19,7 @@ namespace GoCardlessSdk.Api
         public string SourceType { get; set; } // "subscription",
         public string SourceId { get; set; } // "YH1VEVQHYVB1UT",
         public string Uri { get; set; } // "https://gocardless.com/api/v1/bills/VZUG2SC3PRT5EM"
+        public string PayoutId { get; set; }
 
         public DateTimeOffset? ChargeCustomerAt { get; set; }
     }
