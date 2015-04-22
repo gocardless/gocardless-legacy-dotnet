@@ -36,7 +36,7 @@ namespace GoCardlessSdk.Partners
 
             var client = new RestClient
                              {
-                                 BaseUrl = GoCardless.BaseUrl,
+                                 BaseUrl = new System.Uri( GoCardless.BaseUrl),
                                  UserAgent = GoCardless.UserAgent
                              };
             client.Authenticator = new HttpBasicAuthenticator(GoCardless.AccountDetails.AppId, GoCardless.AccountDetails.AppSecret);

@@ -149,7 +149,7 @@ namespace GoCardlessSdk.Connect
 
             var client = new RestClient
                              {
-                                 BaseUrl = ApiClient.ApiUrl,
+                                 BaseUrl = new Uri(ApiClient.ApiUrl),
                                  UserAgent = GoCardless.UserAgent
                              };
             var serializer = new JsonSerializer
