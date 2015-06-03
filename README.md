@@ -1,15 +1,7 @@
-![GoCardless](https://s3-eu-west-1.amazonaws.com/gocardless/images/client-lib-headers/half-lo-res.jpg)
+### :warning: __This client library is no longer supported__
 
-## GoCardless .NET Client Library
+This library isn't supported or maintained to the same high standard as our other projects, so we would advise that you don't use it to build a new integration.
 
-The GoCardless .NET client provides a simple interface to the GoCardless API.
+If you're working with our API using .NET, you should make HTTP requests to our API directly ([documentation](https://developer.gocardless.com)) instead.
 
-### Installing
-
-The recommended way of install the GoCardless .NET library is with NuGet. In
-the package manager console, type:
-
-    PM> Install-Package GoCardless
-
-More details about the package are [available here](https://nuget.org/packages/GoCardless/).
-
+The source will remain available, so you can modify it to suit your requirements if you still wish to use this library.
