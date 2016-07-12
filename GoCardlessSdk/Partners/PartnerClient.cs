@@ -3,6 +3,7 @@ using GoCardlessSdk.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using RestSharp.Authenticators;
 
 namespace GoCardlessSdk.Partners
 {

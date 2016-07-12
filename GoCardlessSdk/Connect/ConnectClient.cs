@@ -5,6 +5,7 @@ using GoCardlessSdk.Api;
 using GoCardlessSdk.Helpers;
 using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Authenticators;
 
 namespace GoCardlessSdk.Connect
 {
