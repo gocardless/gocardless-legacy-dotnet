@@ -64,5 +64,20 @@ namespace GoCardlessSdk.Tests.Api
             Fiddler.FiddlerApplication.BeforeRequest -= inspect;
             Assert.AreEqual("gocardless.com/api/v1/bills/AJKH338A19/retry", url);
         }
+
+        [Test]
+        public void PostsCancelCorrectly()
+        {
+            var url = null as string;
+            Fiddler.SessionStateHandler inspect = s =>
+            {
+                url = s.url;
+            };
+
+            Fiddler.FiddlerApplication.BeforeRequest += inspect;
+            new ApiClient("asdf").CancelBill("ABC123ABC");
+            Fiddler.FiddlerApplication.BeforeRequest -= inspect;
+            Assert.AreEqual("gocardless.com/api/v1/bills/ABC123ABC/cancel", url);
+        }
     }
 }
