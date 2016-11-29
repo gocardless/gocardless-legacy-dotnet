@@ -5,6 +5,7 @@ using GoCardlessSdk.Api;
 using GoCardlessSdk.Helpers;
 using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Authenticators;
 
 namespace GoCardlessSdk.Connect
 {
@@ -149,7 +150,7 @@ namespace GoCardlessSdk.Connect
 
             var client = new RestClient
                              {
-                                 BaseUrl = ApiClient.ApiUrl,
+                                 BaseUrl = new Uri(ApiClient.ApiUrl),
                                  UserAgent = GoCardless.UserAgent
                              };
             var serializer = new JsonSerializer
@@ -161,7 +162,7 @@ namespace GoCardlessSdk.Connect
             var response = client.Execute(request);
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                throw new ApiException("Unexpected response : " + (int)response.StatusCode + " " + response.StatusCode);
+                throw new ApiException("Unexpected response : " + (int)response.StatusCode + " " + response.StatusCode) { StatusCode = response.StatusCode };
             }
 
             return resource;

@@ -3,6 +3,7 @@ using GoCardlessSdk.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using RestSharp.Authenticators;
 
 namespace GoCardlessSdk.Partners
 {
@@ -36,7 +37,7 @@ namespace GoCardlessSdk.Partners
 
             var client = new RestClient
                              {
-                                 BaseUrl = GoCardless.BaseUrl,
+                                 BaseUrl = new System.Uri( GoCardless.BaseUrl),
                                  UserAgent = GoCardless.UserAgent
                              };
             client.Authenticator = new HttpBasicAuthenticator(GoCardless.AccountDetails.AppId, GoCardless.AccountDetails.AppSecret);
@@ -54,7 +55,8 @@ namespace GoCardlessSdk.Partners
             {
                 throw new ApiException("Invalid response getting access token from " + tokenUrl)
                 {
-                    Content = JObject.Parse(response.Content)
+                    Content = JObject.Parse(response.Content),
+                    StatusCode = response.StatusCode,
                 };
             }
         }
