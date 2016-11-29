@@ -11,6 +11,8 @@ namespace GoCardlessSdk
         public JObject Content { get; set; }
 
         public string RawContent { get; set; }
+
+        public System.Net.HttpStatusCode StatusCode { get; set; }
     }
     public class ClientException : Exception
     {

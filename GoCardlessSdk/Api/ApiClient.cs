@@ -154,6 +154,7 @@ namespace GoCardlessSdk.Api
                 {
                 }
                 ex.RawContent = response.Content;
+                ex.StatusCode = response.StatusCode;
                 throw ex;
             }
             return response.Data;

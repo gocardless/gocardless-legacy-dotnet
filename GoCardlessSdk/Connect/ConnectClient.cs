@@ -161,7 +161,9 @@ namespace GoCardlessSdk.Connect
             var response = client.Execute(request);
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                throw new ApiException("Unexpected response : " + (int)response.StatusCode + " " + response.StatusCode);
+                throw new ApiException("Unexpected response : " + (int)response.StatusCode + " " + response.StatusCode) {
+                    StatusCode = response.StatusCode
+                };
             }
 
             return resource;
