@@ -1,6 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{928188DE-5F74-4F75-B35D-516A898F460D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoCardlessSdk", "GoCardlessSdk\GoCardlessSdk.csproj", "{36CDA1FB-4093-41ED-9879-CD18EFCCE80B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoCardlessSdk.Net2", "GoCardlessSdk.Net2\GoCardlessSdk.Net2.csproj", "{C8AA0C78-ED08-4912-ABB5-921661A8E9C5}"
@@ -10,13 +19,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoCardlessSdk.Net2.Tests", "GoCardlessSdk.Net2.Tests\GoCardlessSdk.Net2.Tests.csproj", "{0B2DECE8-E280-4578-A6CD-78D98507BB0F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Mvc3", "Sample.Mvc3\Sample.Mvc3.csproj", "{63BA941A-94D4-41A2-8AE2-D9B2814F2A9C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{928188DE-5F74-4F75-B35D-516A898F460D}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
