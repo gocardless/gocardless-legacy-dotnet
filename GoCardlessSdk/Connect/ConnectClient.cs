@@ -133,8 +133,9 @@ namespace GoCardlessSdk.Connect
         /// invalid.
         /// </summary>
         /// <param name="requestContent">the response parameters returned by the API server</param>
+        /// <param name="maxRetry">Number of times to retry if the confirm resource call to GoCardless fails. Default 1 (retry once)</param>
         /// <returns>the confirmed resource object</returns>
-        public ConfirmResource ConfirmResource(NameValueCollection requestContent)
+        public ConfirmResource ConfirmResource(NameValueCollection requestContent, int maxRetry = 1)
         {
             var resource = DeserializeAndValidateRequestSignature(requestContent);
 
@@ -158,10 +159,17 @@ namespace GoCardlessSdk.Connect
             };
             client.AddHandler("application/json", new NewtonsoftJsonDeserializer(serializer));
             client.Authenticator = new HttpBasicAuthenticator(GoCardless.AccountDetails.AppId, GoCardless.AccountDetails.AppSecret);
-            var response = client.Execute(request);
+            IRestResponse response;
+            var numberOfCalls = 0;
+            do
+            {
+                response = client.Execute(request);
+                numberOfCalls++;
+            } while (response.StatusCode != HttpStatusCode.OK && numberOfCalls < maxRetry);
+
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                throw new ApiException("Unexpected response : " + (int)response.StatusCode + " " + response.StatusCode);
+                throw new ApiException("Unexpected response : " + (int)response.StatusCode + " " + response.StatusCode + "  number of tries: " + numberOfCalls);
             }
 
             return resource;
