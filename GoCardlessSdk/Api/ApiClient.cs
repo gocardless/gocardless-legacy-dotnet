@@ -147,7 +147,7 @@ namespace GoCardlessSdk.Api {
             return obj.GetType().GetProperties().ToDictionary(p => p.Name, p => p.GetValue(obj, null));
         }
 
-        public T Execute<T>(RestRequest request, HttpStatusCode expected = HttpStatusCode.OK) where T : new() {
+        public virtual T Execute<T>(RestRequest request, HttpStatusCode expected = HttpStatusCode.OK) where T : new() {
             var client = new RestClient {
                 BaseUrl = ApiUrl,
                 UserAgent = GoCardless.UserAgent
